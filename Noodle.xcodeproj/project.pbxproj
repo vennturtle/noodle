@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
+		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
 		E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */; };
 		E4BECBF81F9FF9E800E9B5A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */; };
 		E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		50AF42191FA00CC900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
+		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
 		E4BECBF21F9FF9E800E9B5A0 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
 				50AF42181FA00CC900D4F252 /* Home.storyboard */,
+				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
 				50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */,
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
@@ -241,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */,
 				50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */,
 				E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */,
 				E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */,
@@ -321,6 +325,14 @@
 				50AF421C1FA00DA800D4F252 /* Base */,
 			);
 			name = SurveyList.storyboard;
+			sourceTree = "<group>";
+		};
+		50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AF421F1FA017F900D4F252 /* Base */,
+			);
+			name = CreateSurvey.storyboard;
 			sourceTree = "<group>";
 		};
 		E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */ = {

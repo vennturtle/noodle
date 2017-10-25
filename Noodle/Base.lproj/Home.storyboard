@@ -21,15 +21,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xwa-DL-k6t">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xwa-DL-k6t">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="576"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGt-7L-HNB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGt-7L-HNB">
                                 <rect key="frame" x="0.0" y="576" width="375" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take Survey"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="zv5-Ty-ydk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="35"/>
+                                <state key="normal" title="Take Survey">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="Kfd-nX-pTu" kind="popoverPresentation" popoverAnchorView="HGt-7L-HNB" id="cfs-0Y-gQG">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -38,8 +43,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3wL-OQ-cT6" firstAttribute="top" secondItem="HGt-7L-HNB" secondAttribute="bottom" id="0K4-hu-qme"/>
+                            <constraint firstAttribute="trailing" secondItem="xwa-DL-k6t" secondAttribute="trailing" id="56x-PN-ojc"/>
+                            <constraint firstItem="HGt-7L-HNB" firstAttribute="top" secondItem="xwa-DL-k6t" secondAttribute="bottom" id="5x1-mV-Tej"/>
+                            <constraint firstItem="xwa-DL-k6t" firstAttribute="top" secondItem="1i7-P4-eCY" secondAttribute="top" id="Img-42-kfX"/>
+                            <constraint firstItem="HGt-7L-HNB" firstAttribute="leading" secondItem="1i7-P4-eCY" secondAttribute="leading" id="PHz-1w-pUJ"/>
+                            <constraint firstItem="xwa-DL-k6t" firstAttribute="leading" secondItem="1i7-P4-eCY" secondAttribute="leading" id="bo7-f2-g5A"/>
+                            <constraint firstAttribute="trailing" secondItem="HGt-7L-HNB" secondAttribute="trailing" id="mP7-NG-UWY"/>
+                            <constraint firstItem="HGt-7L-HNB" firstAttribute="top" secondItem="xwa-DL-k6t" secondAttribute="bottom" id="zFR-hP-iHo"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="acf-9f-iA3"/>
+                    <navigationItem key="navigationItem" title="Home" id="acf-9f-iA3">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="0Vs-7Q-qeP">
+                            <connections>
+                                <segue destination="bIS-i9-Vat" kind="popoverPresentation" popoverAnchorBarButtonItem="0Vs-7Q-qeP" id="Epn-j4-RAN">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ber-NL-EVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,6 +93,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-5y-u7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2459" y="936"/>
+        </scene>
+        <!--CreateSurvey-->
+        <scene sceneID="9oA-wj-S46">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateSurvey" id="bIS-i9-Vat" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0OP-cD-QTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2556" y="555"/>
         </scene>
     </scenes>
 </document>
