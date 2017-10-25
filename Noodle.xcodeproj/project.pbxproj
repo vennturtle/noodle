@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
+		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */; };
 		E4BECBF81F9FF9E800E9B5A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */; };
 		E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50AF42191FA00CC900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
+		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
 		E4BECBF21F9FF9E800E9B5A0 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
 				E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
+				50AF42181FA00CC900D4F252 /* Home.storyboard */,
+				50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */,
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
 				E4BECC011F9FF9E800E9B5A0 /* Info.plist */,
@@ -235,9 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */,
 				E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */,
 				E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */,
 				E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */,
+				50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +307,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		50AF42181FA00CC900D4F252 /* Home.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AF42191FA00CC900D4F252 /* Base */,
+			);
+			name = Home.storyboard;
+			sourceTree = "<group>";
+		};
+		50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AF421C1FA00DA800D4F252 /* Base */,
+			);
+			name = SurveyList.storyboard;
+			sourceTree = "<group>";
+		};
 		E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -516,6 +540,7 @@
 				E4BECC1C1F9FF9E800E9B5A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4BECC1D1F9FF9E800E9B5A0 /* Build configuration list for PBXNativeTarget "NoodleTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +549,7 @@
 				E4BECC1F1F9FF9E800E9B5A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4BECC201F9FF9E800E9B5A0 /* Build configuration list for PBXNativeTarget "NoodleUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +558,7 @@
 				E4BECC221F9FF9E800E9B5A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
