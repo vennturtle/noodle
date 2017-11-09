@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7pg-cu-n9A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16G1036" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7pg-cu-n9A">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="EPM-qH-Aes">
             <objects>
-                <viewController id="mNa-bR-qFn" sceneMemberID="viewController">
+                <viewController id="mNa-bR-qFn" customClass="DashboardViewController" customModule="Noodle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ycm-wm-8Uh"/>
                         <viewControllerLayoutGuide type="bottom" id="3wL-OQ-cT6"/>
@@ -55,6 +55,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="acf-9f-iA3">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="MgT-Rf-IVg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="A90-uW-gLf">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logOutAction:" destination="mNa-bR-qFn" eventType="touchUpInside" id="UZ4-2D-q2p"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="0Vs-7Q-qeP">
                             <connections>
                                 <segue destination="bIS-i9-Vat" kind="popoverPresentation" popoverAnchorBarButtonItem="0Vs-7Q-qeP" id="Epn-j4-RAN">

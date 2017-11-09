@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		086031EEDFC4380CEA78500D /* Pods_NoodleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5FCC2AFC1B293F484E57A5 /* Pods_NoodleUITests.framework */; };
 		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
+		959314601FB3E5CA00A6073A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */; };
+		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
+		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
+		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
+		95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885541FB412420000DE6B /* ResetPasswordViewController.swift */; };
+		D6AD6203460700600B607513 /* Pods_NoodleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */; };
+		DD9E5B6FB32C22BA307EB7A0 /* Pods_Noodle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */; };
 		E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */; };
 		E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */; };
-		E4BECBF81F9FF9E800E9B5A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */; };
 		E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */; };
 		E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */; };
 		E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */; };
@@ -38,13 +45,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoodleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noodle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F410A6D2BD6E2E4242D108 /* Pods-NoodleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50AF42191FA00CC900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
 		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
+		5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.release.xcconfig"; sourceTree = "<group>"; };
+		9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		95E885541FB412420000DE6B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		BCF147094E5279FE3F9918BF /* Pods-Noodle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.debug.xcconfig"; sourceTree = "<group>"; };
+		C794588942B9CFAA2FCD4E59 /* Pods-NoodleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CAA6900102B4A53D6BDDD0EE /* Pods-NoodleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D1E3D8C9238F17833CA8B4D1 /* Pods-NoodleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests.release.xcconfig"; sourceTree = "<group>"; };
 		E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSurveyViewController.swift; sourceTree = "<group>"; };
 		E4BECBF21F9FF9E800E9B5A0 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E4BECBFA1F9FF9E800E9B5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4BECBFF1F9FF9E800E9B5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +74,7 @@
 		E4BECC111F9FF9E800E9B5A0 /* NoodleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoodleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECC151F9FF9E800E9B5A0 /* NoodleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoodleUITests.swift; sourceTree = "<group>"; };
 		E4BECC171F9FF9E800E9B5A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE5FCC2AFC1B293F484E57A5 /* Pods_NoodleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoodleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD9E5B6FB32C22BA307EB7A0 /* Pods_Noodle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6AD6203460700600B607513 /* Pods_NoodleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +98,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				086031EEDFC4380CEA78500D /* Pods_NoodleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26019DF3CA4B1FFB9AB8CB38 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCF147094E5279FE3F9918BF /* Pods-Noodle.debug.xcconfig */,
+				5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */,
+				CAA6900102B4A53D6BDDD0EE /* Pods-NoodleTests.debug.xcconfig */,
+				D1E3D8C9238F17833CA8B4D1 /* Pods-NoodleTests.release.xcconfig */,
+				C794588942B9CFAA2FCD4E59 /* Pods-NoodleUITests.debug.xcconfig */,
+				23F410A6D2BD6E2E4242D108 /* Pods-NoodleUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3A90C90E1C3D99E4B9A668E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */,
+				0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */,
+				FE5FCC2AFC1B293F484E57A5 /* Pods_NoodleUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E4BECBE91F9FF9E800E9B5A0 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +135,8 @@
 				E4BECC091F9FF9E800E9B5A0 /* NoodleTests */,
 				E4BECC141F9FF9E800E9B5A0 /* NoodleUITests */,
 				E4BECBF31F9FF9E800E9B5A0 /* Products */,
+				26019DF3CA4B1FFB9AB8CB38 /* Pods */,
+				3A90C90E1C3D99E4B9A668E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,7 +154,10 @@
 			isa = PBXGroup;
 			children = (
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
-				E4BECBF71F9FF9E800E9B5A0 /* ViewController.swift */,
+				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
+				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
+				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
+				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
 				50AF42181FA00CC900D4F252 /* Home.storyboard */,
 				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
@@ -115,6 +166,7 @@
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
 				E4BECC011F9FF9E800E9B5A0 /* Info.plist */,
+				9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */,
 			);
 			path = Noodle;
 			sourceTree = "<group>";
@@ -144,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4BECC1A1F9FF9E800E9B5A0 /* Build configuration list for PBXNativeTarget "Noodle" */;
 			buildPhases = (
+				AF7E438A449685642D617336 /* [CP] Check Pods Manifest.lock */,
 				E4BECBEE1F9FF9E800E9B5A0 /* Sources */,
 				E4BECBEF1F9FF9E800E9B5A0 /* Frameworks */,
 				E4BECBF01F9FF9E800E9B5A0 /* Resources */,
+				24FBDEEFACDB8AEEBB50B317 /* [CP] Embed Pods Frameworks */,
+				4E138F4DA0AA9337DABE5759 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4BECC1D1F9FF9E800E9B5A0 /* Build configuration list for PBXNativeTarget "NoodleTests" */;
 			buildPhases = (
+				0818ED4067C45195B454930D /* [CP] Check Pods Manifest.lock */,
 				E4BECC021F9FF9E800E9B5A0 /* Sources */,
 				E4BECC031F9FF9E800E9B5A0 /* Frameworks */,
 				E4BECC041F9FF9E800E9B5A0 /* Resources */,
+				0161CF377CFCB7135CDCFD2C /* [CP] Embed Pods Frameworks */,
+				7D26C58360BCC244BE07F329 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,9 +237,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4BECC201F9FF9E800E9B5A0 /* Build configuration list for PBXNativeTarget "NoodleUITests" */;
 			buildPhases = (
+				1FE60395EC5E09022E62FCBC /* [CP] Check Pods Manifest.lock */,
 				E4BECC0D1F9FF9E800E9B5A0 /* Sources */,
 				E4BECC0E1F9FF9E800E9B5A0 /* Frameworks */,
 				E4BECC0F1F9FF9E800E9B5A0 /* Resources */,
+				71A3808A4CC36DC5D8BCC475 /* [CP] Embed Pods Frameworks */,
+				A726D8E9ADACCBD8F60ED546 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +314,7 @@
 				E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */,
 				E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */,
 				50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */,
+				959314601FB3E5CA00A6073A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,13 +334,168 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0161CF377CFCB7135CDCFD2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0818ED4067C45195B454930D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NoodleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1FE60395EC5E09022E62FCBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NoodleUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		24FBDEEFACDB8AEEBB50B317 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Noodle/Pods-Noodle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Noodle/Pods-Noodle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E138F4DA0AA9337DABE5759 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Noodle/Pods-Noodle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71A3808A4CC36DC5D8BCC475 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D26C58360BCC244BE07F329 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A726D8E9ADACCBD8F60ED546 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF7E438A449685642D617336 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Noodle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E4BECBEE1F9FF9E800E9B5A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4BECBF81F9FF9E800E9B5A0 /* ViewController.swift in Sources */,
+				95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */,
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
+				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
+				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
+				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,
 				E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +672,7 @@
 		};
 		E4BECC1B1F9FF9E800E9B5A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCF147094E5279FE3F9918BF /* Pods-Noodle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
@@ -469,6 +687,7 @@
 		};
 		E4BECC1C1F9FF9E800E9B5A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
@@ -483,6 +702,7 @@
 		};
 		E4BECC1E1F9FF9E800E9B5A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAA6900102B4A53D6BDDD0EE /* Pods-NoodleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -499,6 +719,7 @@
 		};
 		E4BECC1F1F9FF9E800E9B5A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1E3D8C9238F17833CA8B4D1 /* Pods-NoodleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +736,7 @@
 		};
 		E4BECC211F9FF9E800E9B5A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C794588942B9CFAA2FCD4E59 /* Pods-NoodleUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
@@ -530,6 +752,7 @@
 		};
 		E4BECC221F9FF9E800E9B5A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23F410A6D2BD6E2E4242D108 /* Pods-NoodleUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
