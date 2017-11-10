@@ -11,13 +11,13 @@
 		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
-		959314601FB3E5CA00A6073A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
 		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
 		95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885541FB412420000DE6B /* ResetPasswordViewController.swift */; };
 		D6AD6203460700600B607513 /* Pods_NoodleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */; };
 		DD9E5B6FB32C22BA307EB7A0 /* Pods_Noodle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */; };
+		E4038FD31FB521B700749742 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4038FD21FB521B700749742 /* GoogleService-Info.plist */; };
 		E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */; };
 		E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */; };
 		E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */; };
@@ -52,7 +52,6 @@
 		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
 		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
 		5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.release.xcconfig"; sourceTree = "<group>"; };
-		9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		C794588942B9CFAA2FCD4E59 /* Pods-NoodleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CAA6900102B4A53D6BDDD0EE /* Pods-NoodleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D1E3D8C9238F17833CA8B4D1 /* Pods-NoodleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests.release.xcconfig"; sourceTree = "<group>"; };
+		E4038FD21FB521B700749742 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSurveyViewController.swift; sourceTree = "<group>"; };
 		E4BECBF21F9FF9E800E9B5A0 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 		E4BECBF41F9FF9E800E9B5A0 /* Noodle */ = {
 			isa = PBXGroup;
 			children = (
+				E4038FD21FB521B700749742 /* GoogleService-Info.plist */,
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
 				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
@@ -166,7 +167,6 @@
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
 				E4BECC011F9FF9E800E9B5A0 /* Info.plist */,
-				9593145F1FB3E5CA00A6073A /* GoogleService-Info.plist */,
 			);
 			path = Noodle;
 			sourceTree = "<group>";
@@ -309,12 +309,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */,
+				E4038FD31FB521B700749742 /* GoogleService-Info.plist in Resources */,
 				50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */,
 				E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */,
 				E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */,
 				E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */,
 				50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */,
-				959314601FB3E5CA00A6073A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
