@@ -68,8 +68,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xec-K0-HQy"/>
-                                    <segue destination="nC3-BA-Na3" kind="presentation" id="wx8-tK-nSE"/>
+                                    <segue destination="nC3-BA-Na3" kind="presentation" id="Tvw-Sp-CBa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjC-Wq-7GU">
