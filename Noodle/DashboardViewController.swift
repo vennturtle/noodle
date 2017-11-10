@@ -9,15 +9,21 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+
 
 
 class DashboardViewController: UIViewController {
 
+    
+    var myRef = FIRDatabase.database().reference()
 
-    
-    
+
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      
         // Do any additional setup after loading the view, typically from a nib.
     }
     

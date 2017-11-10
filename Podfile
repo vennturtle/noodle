@@ -6,8 +6,9 @@ target 'Noodle' do
   use_frameworks!
 
   # Pods for Noodle
-  pod ‘Firebase/Core’
-  pod ‘Firebase/Auth’
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   target 'NoodleTests' do
     inherit! :search_paths
