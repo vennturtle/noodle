@@ -15,6 +15,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var nameField: UITextField!
+    var myRef = FIRDatabase.database().reference()
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,12 @@ class SignUpViewController: UIViewController {
                 if error == nil {
                     print("User created.")
                     print("You have signed in.")
+                    
+                    let newUser = ["Name" : self.nameField.text!, "Email": self.emailTextField.text!]
+                    self.myRef.child("Users").child((user?.uid)!).setValue(newUser)
+                    
+                    
+                    
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                     self.present(vc!, animated: true, completion: nil)
                 }

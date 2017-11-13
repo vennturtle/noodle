@@ -13,10 +13,33 @@ import FirebaseDatabase
 
 
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+     var myRef = FIRDatabase.database().reference()
+    
+    
+    @available(iOS 2.0, *)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "home", for: indexPath) as! HomeTableViewCell
+        
+        cell.surveyLabel.text = "this is a test"
+        
+        return cell
+        
+    }
+    
+    
+    
+    @available(iOS 2.0, *)
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+
 
     
-    var myRef = FIRDatabase.database().reference()
+   
 
 
    
@@ -53,4 +76,5 @@ class DashboardViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindFromSurveyList(segue: UIStoryboardSegue){}
 }

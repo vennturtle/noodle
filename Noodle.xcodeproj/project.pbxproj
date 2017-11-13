@@ -11,6 +11,9 @@
 		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
+		95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */; };
+		95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */; };
+		95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
 		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
@@ -52,6 +55,9 @@
 		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
 		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
 		5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.release.xcconfig"; sourceTree = "<group>"; };
+		95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListViewController.swift; sourceTree = "<group>"; };
+		95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListTableViewCell.swift; sourceTree = "<group>"; };
+		95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -157,13 +163,16 @@
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
 				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
-				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
 				50AF42181FA00CC900D4F252 /* Home.storyboard */,
+				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
+				95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */,
 				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
 				E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */,
 				50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */,
+				95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */,
+				95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */,
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
 				E4BECC011F9FF9E800E9B5A0 /* Info.plist */,
@@ -496,6 +505,9 @@
 				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
 				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,
+				95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */,
+				95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */,
+				95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */,
 				E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
