@@ -11,8 +11,18 @@ import UIKit
 import Firebase
 
 class SurveyListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var databaseHandler: FIRDatabaseHandle?
+    var myRef = FIRDatabase.database().reference()
+    var surveyInformationArray = [String]()
 
-
+    
+    
+    var titleLabel: String?
+    var descriptionLabel: String?
+    var owner: String?
+    
+    
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,9 +36,42 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         SurveyListTableViewCell
         
         
-        cell.titleLabel.text = "testing "
+
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+    var myArray = [String]()
+        myArray.append("this is testing survey")
+        myArray.append("this is a testitle title")
+        
+        //myRef.child("Users").child(userID!).child("Survey 1").child("Surveys").setValue(myArray)
+        
+        myRef.child("Users").child(userID!).child("Surveys").observeSingleEvent(of: .value, with: {( FIRDataSnapshot) in
+        
+            if let dictionary = FIRDataSnapshot.value as? [String:AnyObject]{
+                cell.titleLabel.text = dictionary["Title"] as? String
+                cell.descriptionLabel.text = dictionary["Description"] as? String
+
+                
+                
+            }
+            
+        })
+        
         cell.ownerLabel.text = "ffff"
-        cell.descriptionLabel.text = "THIS IS A TEST LETS SEE IF IT WORKS "
+
+        
+//            let detail = FIRDataSnapshot.value as? String
+//            if let actualDetail = detail{
+//                self.surveyInformationArray.append(actualDetail)
+//      )
+        
+        
+        
+        // print(surveyInformationArray)
+        
+       // cell.titleLabel.text = "testing "
+      //  cell.descriptionLabel.text = "THIS IS A TEST LETS SEE IF IT WORKS "
         
         
         return cell
@@ -37,6 +80,10 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     myRef.database.reference().child("Users")
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -44,5 +91,4 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
