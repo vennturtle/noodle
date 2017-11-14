@@ -15,6 +15,7 @@
 		95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */; };
 		95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */; };
 		95A77F221FBAB85200B807F9 /* SurveyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F211FBAB85200B807F9 /* SurveyInfo.swift */; };
+		95A77F241FBB7BB700B807F9 /* MySurveysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F231FBB7BB700B807F9 /* MySurveysViewController.swift */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
 		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
@@ -60,6 +61,7 @@
 		95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListTableViewCell.swift; sourceTree = "<group>"; };
 		95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		95A77F211FBAB85200B807F9 /* SurveyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyInfo.swift; sourceTree = "<group>"; };
+		95A77F231FBB7BB700B807F9 /* MySurveysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySurveysViewController.swift; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
 				50AF42181FA00CC900D4F252 /* Home.storyboard */,
+				95A77F231FBB7BB700B807F9 /* MySurveysViewController.swift */,
 				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
 				95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */,
 				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
@@ -505,6 +508,7 @@
 			files = (
 				95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */,
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
+				95A77F241FBB7BB700B807F9 /* MySurveysViewController.swift in Sources */,
 				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
 				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,

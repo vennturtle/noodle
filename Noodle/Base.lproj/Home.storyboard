@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="EPM-qH-Aes">
             <objects>
-                <viewController id="mNa-bR-qFn" customClass="DashboardViewController" customModule="Noodle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dashBoardController" id="mNa-bR-qFn" customClass="DashboardViewController" customModule="Noodle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ycm-wm-8Uh"/>
                         <viewControllerLayoutGuide type="bottom" id="3wL-OQ-cT6"/>
@@ -97,10 +97,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="9Wx-z8-xv9" kind="show" identifier="segueToSurveys" id="xlv-Vt-pq7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ber-NL-EVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="921.58920539730138"/>
+            <point key="canvasLocation" x="1782" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eBZ-B1-8Wu">
@@ -126,7 +129,7 @@
                 <viewControllerPlaceholder storyboardName="SurveyList" id="Kfd-nX-pTu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-5y-u7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="936"/>
+            <point key="canvasLocation" x="2542" y="1197"/>
         </scene>
         <!--CreateSurvey-->
         <scene sceneID="9oA-wj-S46">
@@ -134,7 +137,37 @@
                 <viewControllerPlaceholder storyboardName="CreateSurvey" id="bIS-i9-Vat" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0OP-cD-QTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="555"/>
+            <point key="canvasLocation" x="2468" y="406"/>
+        </scene>
+        <!--My Surveys View Controller-->
+        <scene sceneID="UV3-9Y-j6L">
+            <objects>
+                <viewController id="9Wx-z8-xv9" customClass="MySurveysViewController" customModule="Noodle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XRi-V8-kqu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bvm-cQ-Q0A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GBX-0C-tdI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJj-f0-Eng">
+                                <rect key="frame" x="16" y="289" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="recievedDataLabel" destination="AJj-f0-Eng" id="zaS-S9-XZz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="06h-w9-qFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3210" y="922"/>
         </scene>
     </scenes>
 </document>
