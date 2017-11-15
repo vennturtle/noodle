@@ -46,7 +46,7 @@ class Survey: NSObject {
         self.longitude = longitude
     }
     
-    convenience init(){
+    convenience override init(){
         self.init(title: "", desc: "", hoursAvailable: 0, latitude: 0.0, longitude: 0.0)
     }
     
