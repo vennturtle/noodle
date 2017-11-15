@@ -15,14 +15,15 @@ class Survey: NSObject {
     var title: String
     var desc: String
     var startDate: Date?
-    var hoursAvailable: Int
+    var daysAvailable: Int
     var latitude: Double
     var longitude: Double
+    var questions: [Question]?
     
-    init(title: String, desc: String, hoursAvailable: Int, latitude: Double, longitude: Double){
+    init(title: String, desc: String, daysAvailable: Int, latitude: Double, longitude: Double){
         self.title = title
         self.desc = desc
-        self.hoursAvailable = hoursAvailable
+        self.daysAvailable = daysAvailable
         self.latitude = latitude
         self.longitude = longitude
     }
@@ -33,7 +34,7 @@ class Survey: NSObject {
         guard let title = dict["title"] as? String                  else { return nil }
         guard let desc = dict["desc"] as? String                    else { return nil }
         guard let startDateMillis = dict["startTime"] as? Int       else { return nil }
-        guard let hoursAvailable = dict["hoursAvailable"] as? Int   else { return nil }
+        guard let daysAvailable = dict["daysAvailable"] as? Int     else { return nil }
         guard let latitude = dict["latitude"] as? Double            else { return nil }
         guard let longitude = dict["longitude"] as? Double          else { return nil }
         
@@ -41,27 +42,60 @@ class Survey: NSObject {
         self.title = title
         self.desc = desc
         self.startDate = Date(timeIntervalSince1970: Double(startDateMillis)/1000.0)
-        self.hoursAvailable = hoursAvailable
+        self.daysAvailable = daysAvailable
         self.latitude = latitude
         self.longitude = longitude
     }
     
     convenience override init(){
+<<<<<<< HEAD
         self.init(title: "", desc: "", hoursAvailable: 0, latitude: 0.0, longitude: 0.0)
+=======
+        self.init(title: "", desc: "", daysAvailable: 0, latitude: 0.0, longitude: 0.0)
+>>>>>>> 7efc5e790d9227de0cb49314fbd9bbe263f6b6fa
     }
     
     func submitNewSurvey(dbref: FIRDatabaseReference, authorID: String){
         let currentDBTime = FIRServerValue.timestamp() as! [String:Any]
-        let key = dbref.child("Surveys").childByAutoId().key
+        let surveyID = dbref.child("Surveys").childByAutoId().key
         let survey = ["uid": authorID,
                       "title": self.title,
                       "desc": self.description,
                       "startTime": currentDBTime,
-                      "hoursAvailable": self.hoursAvailable,
+                      "daysAvailable": self.daysAvailable,
                       "latitude": self.latitude,
                       "longitude": self.longitude] as [String: Any]
         
-        let childUpdates = ["/Surveys/\(key)": survey]
+        let childUpdates = ["/Surveys/\(surveyID)": survey]
         dbref.updateChildValues(childUpdates)
     }
 }
+/* reference code
+// retrieving all surveys stored in the database
+print("\n\nCurrent Surveys:")
+self.myRef.child("Surveys").observe(.value, with: { snapshot in
+    for child in snapshot.children {
+        let values = child as? FIRDataSnapshot
+        let model = Survey(snapshot: values!)!
+        print(model.id)
+        print(model.title)
+        print(model.startDate)
+    }
+})
+
+// submitting a new survey to the database
+var myRef = FIRDatabase.database().reference()
+if let uid = FIRAuth.auth()?.currentUser?.uid{
+    let startDate = FIRServerValue.timestamp() as! [String:Any]
+    let key = myRef.child("Surveys").childByAutoId().key
+    let survey = ["uid": uid,
+                  "title": "A Study On Bananas",
+                  "desc": "A formal study on the nature of bananas",
+                  "startTime": startDate,
+                  "daysAvailable": 1,
+                  "latitude": 37.335,
+                  "longitude": -121.819] as [String : Any]
+    
+    let childUpdates = ["/Surveys/\(key)": survey]
+    myRef.updateChildValues(childUpdates)
+}*/
