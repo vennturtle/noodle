@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class CreateSurveyViewController: UIViewController {
     
@@ -18,10 +19,7 @@ class CreateSurveyViewController: UIViewController {
     @IBOutlet weak var decriptionTextView: UITextView!
     @IBOutlet weak var useLocation: UISwitch!
     @IBOutlet weak var locationPicker: MKMapView!
-    
-    
-    
-    
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "QuestionSegue" {
             let navigationController = segue.destination as! UINavigationController
@@ -35,14 +33,13 @@ class CreateSurveyViewController: UIViewController {
         let questionViewController = segue.source as! QuestionFormViewController
         print(questionViewController.questionType)
     }
+
     
     @IBAction func enableLocation(_ sender: Any) {
         locationPicker.isHidden = !useLocation.isOn
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    
     }
     
     override func didReceiveMemoryWarning() {

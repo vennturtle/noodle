@@ -12,6 +12,7 @@ import Firebase
 
 class SurveyListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var myRef = FIRDatabase.database().reference()
 
     
     @available(iOS 2.0, *)
@@ -38,6 +39,17 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        print("\n\nCurrent Surveys:")
+        self.myRef.child("Surveys").observe(.value, with: { snapshot in
+            for child in snapshot.children {
+                let values = child as? FIRDataSnapshot
+                let model = Survey(snapshot: values!)!
+                print(model.id)
+                print(model.title)
+                print(model.startDate)
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
