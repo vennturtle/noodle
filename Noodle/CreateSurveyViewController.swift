@@ -14,6 +14,8 @@ class CreateSurveyViewController: UIViewController {
     @IBOutlet weak var useLocation: UISwitch!
     @IBOutlet weak var locationPicker: MKMapView!
     
+    @IBAction func unwindQuestions(segue: UIStoryboardSegue){}
+    
     @IBAction func enableLocation(_ sender: Any) {
         locationPicker.isHidden = !useLocation.isOn
     }
