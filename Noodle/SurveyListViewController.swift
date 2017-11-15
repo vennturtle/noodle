@@ -39,6 +39,7 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
 
         
         let userID = FIRAuth.auth()?.currentUser?.uid
+        print(userID)
         
     var myArray = [String]()
         myArray.append("this is testing survey")

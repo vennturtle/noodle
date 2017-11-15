@@ -39,22 +39,22 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     // method runs when a table view cell is clicked
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-        //segues to My surveys view controller
-        self.performSegue(withIdentifier: "segueToSurveys", sender: self)
-        
-    }
-    
-    //method is called before the segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //reference to the second controller
-        let secondController = segue.destination as! MySurveysViewController
-        
-        //sets the varible in the second controller 
-        secondController.receivedData = "Hello"
-    }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        
+//        //segues to My surveys view controller
+//        self.performSegue(withIdentifier: "segueToSurveys", sender: self)
+//        
+//    }
+//    
+//    //method is called before the segue
+////    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+////        
+////        //reference to the second controller
+////        let secondController = segue.destination as! MySurveysViewController
+////        
+////        //sets the varible in the second controller 
+////        secondController.receivedData = "Hello"
+////    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

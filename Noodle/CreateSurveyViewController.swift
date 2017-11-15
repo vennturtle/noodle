@@ -45,12 +45,12 @@ class CreateSurveyViewController: UIViewController {
             let startDate = FIRServerValue.timestamp() as! [String: Any]
             let key = myRef.child("Surveys").childByAutoId().key
             let survey = ["uid": uid,
-                          "title": "My title",
-                          "decription": "my description",
+                          "title": "My title2",
+                          "decription": "my description2",
                           "startTime": startDate,
                           "numDays": 1 as NSNumber,
-                          "latitude": 37.3352 as NSNumber,
-                          "longitude": -121.811 as NSNumber] as [String : Any]
+                          "latitude": 37.3356 as NSNumber,
+                          "longitude": 121.819 as NSNumber] as [String : Any]
             
             let childUpdates = ["/Surveys/\(key)": survey]
             myRef.updateChildValues(childUpdates)
