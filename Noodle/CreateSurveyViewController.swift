@@ -11,9 +11,20 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class CreateSurveyViewController: UIViewController {
+class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
     
+    let manager = CLLocationManager()
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        locationPicker.setRegion(region, animated:true)
+        self.locationPicker.showsUserLocation = true
+    }
+    
+
 
     
     //outlets
@@ -28,7 +39,12 @@ class CreateSurveyViewController: UIViewController {
     var myRef: FIRDatabaseReference?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        var newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: -200, longitude: 200)
+        var latitude = manager.location?.coordinate.latitude
+        var longitude = manager.location?.coordinate.longitude
+        
+        print("longitude: \(longitude)")
+        print("latitude: \(latitude)")
+        var newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: latitude!, longitude: longitude!)
         let uid = FIRAuth.auth()?.currentUser?.uid
         newSurvey.submitNewSurvey(dbref: myRef!, authorID: uid!)
         
@@ -52,10 +68,37 @@ class CreateSurveyViewController: UIViewController {
     
     @IBAction func enableLocation(_ sender: Any) {
         locationPicker.isHidden = !useLocation.isOn
+        manager.requestWhenInUseAuthorization()
+
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == CLAuthorizationStatus.denied){
+            showLocationisablePopUp()
+        }
+    }
+    
+    func showLocationisablePopUp(){
+        let alertController = UIAlertController(title: "Location Access Disabled", message: "In order for us to match you with surveys, we will need access to your location", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        let openAction = UIAlertAction(title: "Open Settings", style: .default){(action) in
+            if let url = URL(string: UIApplicationOpenSettingsURLString){
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            
+        }
+        alertController.addAction(openAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.startUpdatingLocation()
         myRef = FIRDatabase.database().reference()
     }
     
