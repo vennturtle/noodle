@@ -29,6 +29,9 @@
 		E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */; };
 		E4BECC0B1F9FF9E800E9B5A0 /* NoodleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECC0A1F9FF9E800E9B5A0 /* NoodleTests.swift */; };
 		E4BECC161F9FF9E800E9B5A0 /* NoodleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECC151F9FF9E800E9B5A0 /* NoodleUITests.swift */; };
+		E4DDA2AA1FBBE61A0072AC94 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDA2A91FBBE61A0072AC94 /* Survey.swift */; };
+		E4DDA2AC1FBBE6350072AC94 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDA2AB1FBBE6350072AC94 /* Question.swift */; };
+		E4DDA2AE1FBBE6A30072AC94 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDA2AD1FBBE6A30072AC94 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,9 @@
 		E4BECC111F9FF9E800E9B5A0 /* NoodleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoodleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECC151F9FF9E800E9B5A0 /* NoodleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoodleUITests.swift; sourceTree = "<group>"; };
 		E4BECC171F9FF9E800E9B5A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4DDA2A91FBBE61A0072AC94 /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		E4DDA2AB1FBBE6350072AC94 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		E4DDA2AD1FBBE6A30072AC94 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FE5FCC2AFC1B293F484E57A5 /* Pods_NoodleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoodleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,6 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				E4038FD21FB521B700749742 /* GoogleService-Info.plist */,
+				E4DDA2A91FBBE61A0072AC94 /* Survey.swift */,
+				E4DDA2AD1FBBE6A30072AC94 /* User.swift */,
+				E4DDA2AB1FBBE6350072AC94 /* Question.swift */,
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
 				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
@@ -503,14 +512,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4DDA2AE1FBBE6A30072AC94 /* User.swift in Sources */,
 				95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */,
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
 				50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */,
 				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
 				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,
+				E4DDA2AA1FBBE61A0072AC94 /* Survey.swift in Sources */,
 				95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */,
 				95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */,
+				E4DDA2AC1FBBE6350072AC94 /* Question.swift in Sources */,
 				95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */,
 				E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */,
 			);

@@ -9,10 +9,13 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class CreateSurveyViewController: UIViewController {
     @IBOutlet weak var useLocation: UISwitch!
     @IBOutlet weak var locationPicker: MKMapView!
+    
+    //var myRef: FIRDatabaseReference
     
     @IBAction func unwindQuestions(segue: UIStoryboardSegue){}
     
@@ -21,7 +24,21 @@ class CreateSurveyViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        /*var myRef = FIRDatabase.database().reference()
+        if let uid = FIRAuth.auth()?.currentUser?.uid{
+            let startDate = FIRServerValue.timestamp() as! [String:Any]
+            let key = myRef.child("Surveys").childByAutoId().key
+            let survey = ["uid": uid,
+                          "title": "A Study On Bananas",
+                          "desc": "A formal study on the nature of bananas",
+                          "startTime:": startDate,
+                          "hoursAvailable": 1,
+                          "latitude": 37.335,
+                          "longitude": -121.819] as [String : Any]
+            
+            let childUpdates = ["/Surveys/\(key)": survey]
+            myRef.updateChildValues(childUpdates)
+        }*/
     }
     
     override func didReceiveMemoryWarning() {
