@@ -22,7 +22,19 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
     var descriptionLabel: String?
     var owner: String?
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("\n\nCurrent Surveys:")
+        myRef.child("Surveys").observe(.value, with: { snapshot in
+            for child in snapshot.children {
+                let values = child as? FIRDataSnapshot
+                let dict = values?.value as? NSDictionary
+                
+                print(values!.key)
+                print(dict!["title"] as! NSString)
+            }
+        })
+    }
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,23 +46,6 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "surveyList", for: indexPath) as!
         SurveyListTableViewCell
-        
-        
-        print(" YEEEEEET \n\n\n\n\n\n")
-        myRef.child("Surveys").observe(.value, with:{(FIRDataSnapshot) in
-            for child in FIRDataSnapshot.children.allObjects as! [FIRDataSnapshot]{
-                let values = child.value as? NSDictionary
-                
-                print(values!)
-                
-                let title = values?["title"] as? String ?? "penis"
-                
-                print(title)
-                
-                print(" YEEEEEET \n\n\n\n\n\n")
-                
-            }
-        })
             
             
 //            if let child = FIRDataSnapshot.children as? [String: AnyObject]{
@@ -132,16 +127,6 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         
         
         return cell
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        myRef.database.reference().child("Users")
-        
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
