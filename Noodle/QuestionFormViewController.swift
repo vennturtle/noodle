@@ -10,11 +10,21 @@ import UIKit
 
 class QuestionFormViewController: UIViewController {
 
-    @IBOutlet weak var typeTextField: UITextField!
     
+    //outlets
+    @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var typePickerView: UIPickerView!
+    @IBOutlet weak var optionLabel: UILabel!
+    @IBOutlet weak var optionScrollView: UIScrollView!
+    
+    
+    //instance variables
+    weak var delegate: CreateSurveyViewController?
     
     var types = ["True or False", "Multiple Choice", "Checkbox"]
+    var questionType = ""
+    var questions = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +65,30 @@ extension QuestionFormViewController: UIPickerViewDelegate, UIPickerViewDataSour
         return types[row]
     }
     
+    //picker view is changed
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.typeTextField.text = self.types[row]
         self.typePickerView.isHidden = true
+        self.questionType = self.types[row]
+        
+        if questionType == "Multiple Choice"
+            || questionType == "Checkbox" {
+            self.optionLabel.isHidden = false
+            self.optionScrollView.isHidden = false
+        } else {
+            self.optionLabel.isHidden = true
+            self.optionScrollView.isHidden = true
+        }
     }
     
+    
+    //text field is changed
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.typeTextField {
+            questionType = typeTextField.text!
             self.typePickerView.isHidden = false
         }
     }
+    
+    
 }
