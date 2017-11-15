@@ -15,7 +15,7 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
     var databaseHandler: FIRDatabaseHandle?
     var myRef = FIRDatabase.database().reference()
     var surveyInformationArray = [String]()
-
+    
     
     
     var titleLabel: String?
@@ -36,43 +36,99 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         SurveyListTableViewCell
         
         
-
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        print(userID)
-        
-    var myArray = [String]()
-        myArray.append("this is testing survey")
-        myArray.append("this is a testitle title")
-        
-        //myRef.child("Users").child(userID!).child("Survey 1").child("Surveys").setValue(myArray)
-        
-        myRef.child("Users").child(userID!).child("Surveys").observeSingleEvent(of: .value, with: {( FIRDataSnapshot) in
-        
-            if let dictionary = FIRDataSnapshot.value as? [String:AnyObject]{
-                cell.titleLabel.text = dictionary["Title"] as? String
-                cell.descriptionLabel.text = dictionary["Description"] as? String
-
+        print(" YEEEEEET \n\n\n\n\n\n")
+        myRef.child("Surveys").observe(.value, with:{(FIRDataSnapshot) in
+            for child in FIRDataSnapshot.children.allObjects as! [FIRDataSnapshot]{
+                let values = child.value as? NSDictionary
                 
+                print(values!)
+                
+                let title = values?["title"] as? String ?? "penis"
+                
+                print(title)
+                
+                print(" YEEEEEET \n\n\n\n\n\n")
                 
             }
-            
         })
+            
+            
+//            if let child = FIRDataSnapshot.children as? [String: AnyObject]{
+//                
+//                
+//                print(child)
+//                let title = child["title"] as? String
+//                
+//                print(self.title)
+//            }
+//            
+//        })
         
+        
+        //            myRef.observe(.value, with: { snapshot in
+        //          for child in snapshot.children.allObjects{
+        //
+        //                }
+        //            })
+        //
+        //
+        //
+        //                print(snapshot.children)
+        //
+        //
+        //                //print(child)
+        //                let childDict = child as? NSDictionary
+        //
+        //                print(childDict)
+        //                let title = childDict?["title"] as? String ?? "penis"
+        //
+        //                print(" YET\n\n\n")
+        //                print(title)
+        //
+        //                print(" YEEEEEETI")
+        //
+        //            }
+        //
+        
+        
+        //     });
+        
+        //  let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        
+        
+        //        var myArray = [String]()
+        //        myArray.append("this is testing survey")
+        //        myArray.append("this is a testitle title")
+        //
+        //myRef.child("Users").child(userID!).child("Survey 1").child("Surveys").setValue(myArray)
+        
+        //        myRef.child("Users").child(userID!).child("Surveys").observeSingleEvent(of: .value, with: {( FIRDataSnapshot) in
+        //
+        //            if let dictionary = FIRDataSnapshot.value as? [String:AnyObject]{
+        //                cell.titleLabel.text = dictionary["Title"] as? String
+        //                cell.descriptionLabel.text = dictionary["Description"] as? String
+        //
+        //
+        //
+        //            }
+        //
+        //        })
+        //
         cell.ownerLabel.text = "ffff"
-
         
-//            let detail = FIRDataSnapshot.value as? String
-//            if let actualDetail = detail{
-//                self.surveyInformationArray.append(actualDetail)
-//      )
+        
+        //            let detail = FIRDataSnapshot.value as? String
+        //            if let actualDetail = detail{
+        //                self.surveyInformationArray.append(actualDetail)
+        //      )
         
         
         
         // print(surveyInformationArray)
         
-       // cell.titleLabel.text = "testing "
-      //  cell.descriptionLabel.text = "THIS IS A TEST LETS SEE IF IT WORKS "
+        // cell.titleLabel.text = "testing "
+        //  cell.descriptionLabel.text = "THIS IS A TEST LETS SEE IF IT WORKS "
         
         
         return cell
@@ -81,7 +137,7 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     myRef.database.reference().child("Users")
+        myRef.database.reference().child("Users")
         
         
         
