@@ -14,10 +14,7 @@ import Firebase
 class CreateSurveyViewController: UIViewController {
     
     
-    
-    
-    
-    
+
     
     //outlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -28,10 +25,12 @@ class CreateSurveyViewController: UIViewController {
     @IBOutlet weak var locationPicker: MKMapView!
    
     
+    var myRef: FIRDatabaseReference?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        var newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, hoursAvailable: 2, latitude: 100, longitude: -200)
-        
+        var newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: -200, longitude: 200)
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        newSurvey.submitNewSurvey(dbref: myRef!, authorID: uid!)
         
         dismiss(animated: true, completion: nil)
     }
@@ -56,21 +55,8 @@ class CreateSurveyViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*var myRef = FIRDatabase.database().reference()
-        if let uid = FIRAuth.auth()?.currentUser?.uid{
-            let startDate = FIRServerValue.timestamp() as! [String:Any]
-            let key = myRef.child("Surveys").childByAutoId().key
-            let survey = ["uid": uid,
-                          "title": "A Study On Bananas",
-                          "desc": "A formal study on the nature of bananas",
-                          "startTime:": startDate,
-                          "hoursAvailable": 1,
-                          "latitude": 37.335,
-                          "longitude": -121.819] as [String : Any]
-            
-            let childUpdates = ["/Surveys/\(key)": survey]
-            myRef.updateChildValues(childUpdates)
-        }*/
+        
+        myRef = FIRDatabase.database().reference()
     }
     
     override func didReceiveMemoryWarning() {

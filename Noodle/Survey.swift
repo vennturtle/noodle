@@ -48,11 +48,8 @@ class Survey: NSObject {
     }
     
     convenience override init(){
-<<<<<<< HEAD
-        self.init(title: "", desc: "", hoursAvailable: 0, latitude: 0.0, longitude: 0.0)
-=======
+
         self.init(title: "", desc: "", daysAvailable: 0, latitude: 0.0, longitude: 0.0)
->>>>>>> 7efc5e790d9227de0cb49314fbd9bbe263f6b6fa
     }
     
     func submitNewSurvey(dbref: FIRDatabaseReference, authorID: String){
