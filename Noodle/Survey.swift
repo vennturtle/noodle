@@ -60,7 +60,7 @@ class Survey: NSObject {
         let surveyID = dbref.child("Surveys").childByAutoId().key
         let survey = ["uid": authorID,
                       "title": self.title,
-                      "desc": self.description,
+                      "desc": self.desc,
                       "startTime": currentDBTime,
                       "daysAvailable": self.daysAvailable,
                       "latitude": self.latitude,
