@@ -44,10 +44,10 @@ class SurveyListViewController: UIViewController, UITableViewDataSource, UITable
         self.myRef.child("Surveys").observe(.value, with: { snapshot in
             for child in snapshot.children {
                 let values = child as? FIRDataSnapshot
-                let model = Survey(snapshot: values!)!
-                print(model.id)
+                let model = Survey(values!)!
+                print(model.id!)
                 print(model.title)
-                print(model.startDate)
+                print(model.startDate!)
             }
         })
     }

@@ -39,14 +39,22 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
     var myRef: FIRDatabaseReference?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        var latitude = manager.location?.coordinate.latitude
-        var longitude = manager.location?.coordinate.longitude
+        let latitude = manager.location?.coordinate.latitude
+        let longitude = manager.location?.coordinate.longitude
         
-        print("longitude: \(longitude)")
-        print("latitude: \(latitude)")
-        var newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: latitude!, longitude: longitude!)
+        print("longitude: \(longitude!)")
+        print("latitude: \(latitude!)")
+        let newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: latitude!, longitude: longitude!)
+        /*
+        newSurvey.addQuestion(Question(prompt: "ayy lmao?", type: .TrueOrFalse))
+        newSurvey.addQuestion(Question(prompt: "Does this work?", type: .SingleSelection,
+                                       options:["Yep","Nope","Maybe"]))
+        newSurvey.addQuestion(Question(prompt: "Which of these would you eat?", type: 2,
+                                       options:["microwavable pho", "chicken strips from the dc",
+                                                "in n out", "sushi", "steak", "salad", "motherfuckin adobo"]))
+        */
         let uid = FIRAuth.auth()?.currentUser?.uid
-        newSurvey.submitNewSurvey(dbref: myRef!, authorID: uid!)
+        _ = newSurvey.submitNewSurvey(dbref: myRef!, authorID: uid!)
         
         dismiss(animated: true, completion: nil)
     }

@@ -61,7 +61,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 // ref.observeSingleEvent(of: .value, with: { snapshot in
                 for snap in snapshot.children{
                     
-                    let survey = Survey(snapshot: snap as! FIRDataSnapshot)!
+                    let survey = Survey(snap as! FIRDataSnapshot)!
                     
                     
                     
