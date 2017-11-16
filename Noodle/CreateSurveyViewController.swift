@@ -54,7 +54,7 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
                                                 "in n out", "sushi", "steak", "salad", "motherfuckin adobo"]))
         */
         let uid = FIRAuth.auth()?.currentUser?.uid
-        _ = newSurvey.submitNewSurvey(dbref: myRef!, authorID: uid!)
+        _ = newSurvey.submit(dbref: myRef!, authorID: uid!)
         
         dismiss(animated: true, completion: nil)
     }

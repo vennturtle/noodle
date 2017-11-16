@@ -62,7 +62,7 @@ class Survey: NSObject {
     }
     
     // submits the survey if it currently has no key, returns the key of the newly stored survey
-    func submitNewSurvey(dbref: FIRDatabaseReference, authorID: String, withDebugMessages debug: Bool = false) -> String? {
+    func submit(dbref: FIRDatabaseReference, authorID: String, withDebugMessages debug: Bool = false) -> String? {
         guard self.id == nil else {
             print("Survey already exists in database. (key: \(self.id!))")
             return self.id!
