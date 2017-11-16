@@ -16,7 +16,10 @@ import FirebaseDatabase
 class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
      var myRef = FIRDatabase.database().reference()
+     var titles: [String] = []
     
+    
+    @IBOutlet weak var tableView: UITableView!
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -24,7 +27,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "home", for: indexPath) as! HomeTableViewCell
         
-        cell.surveyLabel.text = "this is a test"
+        
+        //        for s in titles.count{
+        cell.surveyLabel.text = titles[indexPath.row]
+
+        
+        
         
         return cell
         
@@ -34,7 +42,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return titles.count
     }
 
 
@@ -46,9 +54,45 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        // Do any additional setup after loading the view, typically from a nib.
+        if let uid =  FIRAuth.auth()?.currentUser?.uid {
+            let ref = myRef.child("Surveys").queryOrdered(byChild: "uid").queryEqual(toValue : uid )
+            ref.observeSingleEvent(of:.value, with: { (snapshot) in
+                
+                // ref.observeSingleEvent(of: .value, with: { snapshot in
+                for snap in snapshot.children{
+                    
+                    let survey = Survey(snapshot: snap as! FIRDataSnapshot)!
+                    
+                    
+                    
+                    print(survey.title )
+                    print("\n\\n\n\n\n\n")
+                    
+                    self.titles.append(survey.title)
+                    // let title = myDict?[""] as! String
+                    //                    self.titles.append(title)
+                    //
+                    //                    self.t = title
+                    
+                    //
+                    //  cell.surveyLabel.text = title
+                    
+                    
+                    
+                    //   print(title)
+                }
+                self.tableView.reloadData()
+                
+            })
+        }
+        
+        
     }
+        
+        
+        
+        // Do any additional setup after loading the view, typically from a nib.
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
