@@ -11,12 +11,24 @@ import UIKit
 class QuestionFormViewController: UIViewController {
 
     
+    
     //outlets
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var typePickerView: UIPickerView!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var optionScrollView: UIScrollView!
     
+    //options
+    @IBOutlet weak var option1TextField: UITextField!
+    @IBOutlet weak var option2TextField: UITextField!
+    @IBOutlet weak var option3TextField: UITextField!
+    @IBOutlet weak var option4TextField: UITextField!
+    @IBOutlet weak var option5TextField: UITextField!
+    @IBOutlet weak var option6TextField: UITextField!
+    @IBOutlet weak var option7TextField: UITextField!
+    @IBOutlet weak var Option8TextField: UITextField!
+    @IBOutlet weak var option9TextField: UITextField!
+    @IBOutlet weak var option10TextField: UITextField!
     
     //instance variables
     weak var delegate: CreateSurveyViewController?
@@ -25,10 +37,16 @@ class QuestionFormViewController: UIViewController {
     var questionType = ""
     var questions = [String]()
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        print("hello")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
 

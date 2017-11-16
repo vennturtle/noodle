@@ -352,16 +352,35 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Questions" id="VGg-FJ-6sK">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ET2-ng-c7t">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="5Wo-5j-aT8">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HVl-B3-VNg">
+                                <rect key="frame" x="16" y="7" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="JR5-A1-j2f" eventType="touchUpInside" id="4yn-co-RZO"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="6gg-gc-Dmz">
                             <connections>
-                                <segue destination="1sH-9g-ft9" kind="unwind" unwindAction="unwindQuestionsWithSegue:" id="QpJ-Kq-9zf"/>
+                                <segue destination="1sH-9g-ft9" kind="unwind" unwindAction="unwindQuestionsWithSegue:" id="SUL-9Y-FFO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="6gg-gc-Dmz"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="Option8TextField" destination="vbj-YU-JjG" id="r3N-FW-fPD"/>
+                        <outlet property="option10TextField" destination="GNh-VF-Gjx" id="zwo-Rw-jR4"/>
+                        <outlet property="option1TextField" destination="VaG-uN-IAi" id="OAo-WG-ARj"/>
+                        <outlet property="option2TextField" destination="THI-la-fYq" id="Yjk-4c-bzh"/>
+                        <outlet property="option3TextField" destination="aQq-Tm-KrZ" id="gmE-8u-3xc"/>
+                        <outlet property="option4TextField" destination="CtW-fr-bTz" id="AIU-98-2MV"/>
+                        <outlet property="option5TextField" destination="cCt-jE-KgK" id="pEK-j7-pQ4"/>
+                        <outlet property="option6TextField" destination="HRV-gL-aca" id="xZu-Pe-XKo"/>
+                        <outlet property="option7TextField" destination="eSg-5c-Dgq" id="QYs-Ti-D1m"/>
+                        <outlet property="option9TextField" destination="VOB-1o-rCg" id="SBx-Yk-91K"/>
                         <outlet property="optionLabel" destination="Ht9-cs-aBA" id="xKW-v3-fyI"/>
                         <outlet property="optionScrollView" destination="9e7-LT-jLN" id="E2O-o2-NB4"/>
                         <outlet property="typePickerView" destination="7n3-q4-LhR" id="AbR-Ef-rGL"/>

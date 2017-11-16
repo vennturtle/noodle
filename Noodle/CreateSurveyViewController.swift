@@ -43,10 +43,15 @@ class CreateSurveyViewController: UIViewController {
         }
     }
     
-    //unwinded from cancel button
+    //unwinded from Done button
     @IBAction func unwindQuestions(segue: UIStoryboardSegue){
         let questionViewController = segue.source as! QuestionFormViewController
-        print(questionViewController.questionType)
+       let type = questionViewController.typeTextField.text
+        if type == "True or False" {
+            print("True or False")
+        } else {
+            print(questionViewController.option1TextField.text)
+        }
     }
 
     
@@ -55,7 +60,7 @@ class CreateSurveyViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         myRef = FIRDatabase.database().reference()
     }
     
@@ -64,5 +69,17 @@ class CreateSurveyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
