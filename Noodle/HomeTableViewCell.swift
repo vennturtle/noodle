@@ -11,9 +11,9 @@ import UIKit
 class HomeTableViewCell: UITableViewCell {
     
     
-    
     @IBOutlet weak var surveyLabel: UILabel!
-
+    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
