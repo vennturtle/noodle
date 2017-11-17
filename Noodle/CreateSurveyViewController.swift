@@ -1,4 +1,4 @@
-//
+///Users/mjnorona/Documents/noodle/Noodle/CreateSurveyViewController.swift
 //  CreateSurveyViewController.swift
 //  Noodle
 //
@@ -39,22 +39,7 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
     var myRef: FIRDatabaseReference?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        let latitude = manager.location?.coordinate.latitude
-        let longitude = manager.location?.coordinate.longitude
         
-        print("longitude: \(longitude!)")
-        print("latitude: \(latitude!)")
-        let newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: latitude!, longitude: longitude!)
-        /*
-        newSurvey.addQuestion(Question(prompt: "ayy lmao?", type: .TrueOrFalse))
-        newSurvey.addQuestion(Question(prompt: "Does this work?", type: .SingleSelection,
-                                       options:["Yep","Nope","Maybe"]))
-        newSurvey.addQuestion(Question(prompt: "Which of these would you eat?", type: 2,
-                                       options:["microwavable pho", "chicken strips from the dc",
-                                                "in n out", "sushi", "steak", "salad", "motherfuckin adobo"]))
-        */
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        _ = newSurvey.submit(dbref: myRef!, authorID: uid!)
         
         dismiss(animated: true, completion: nil)
     }
@@ -71,11 +56,21 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func unwindQuestions(segue: UIStoryboardSegue){
         let questionViewController = segue.source as! QuestionFormViewController
        let type = questionViewController.typeTextField.text
-        if type == "True or False" {
-            print("True or False")
-        } else {
-            print(questionViewController.option1TextField.text)
+       questionViewController.saveQuestion()
+        
+        let latitude = manager.location?.coordinate.latitude
+        let longitude = manager.location?.coordinate.longitude
+        
+        print("longitude: \(longitude!)")
+        print("latitude: \(latitude!)")
+        let newSurvey = Survey(title: titleTextField.text!, desc: descriptionTextView.text, daysAvailable: Int(daysTextfield.text!)!, latitude: latitude!, longitude: longitude!)
+        
+        for i in 0..<questionViewController.questions.count {
+            newSurvey.addQuestion(questionViewController.questions[i])
+            print("added Question: \(i)")
         }
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        _ = newSurvey.submit(dbref: myRef!, authorID: uid!)
     }
 
     

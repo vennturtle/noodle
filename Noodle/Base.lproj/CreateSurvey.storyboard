@@ -197,6 +197,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="JR5-A1-j2f" eventType="touchUpInside" id="7d8-Rt-kNk"/>
+                                </connections>
                             </button>
                             <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e7-LT-jLN">
                                 <rect key="frame" x="0.0" y="339" width="375" height="219"/>
@@ -371,7 +374,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="Option8TextField" destination="vbj-YU-JjG" id="r3N-FW-fPD"/>
                         <outlet property="option10TextField" destination="GNh-VF-Gjx" id="zwo-Rw-jR4"/>
                         <outlet property="option1TextField" destination="VaG-uN-IAi" id="OAo-WG-ARj"/>
                         <outlet property="option2TextField" destination="THI-la-fYq" id="Yjk-4c-bzh"/>
@@ -380,9 +382,12 @@
                         <outlet property="option5TextField" destination="cCt-jE-KgK" id="pEK-j7-pQ4"/>
                         <outlet property="option6TextField" destination="HRV-gL-aca" id="xZu-Pe-XKo"/>
                         <outlet property="option7TextField" destination="eSg-5c-Dgq" id="QYs-Ti-D1m"/>
+                        <outlet property="option8TextField" destination="vbj-YU-JjG" id="fsA-hz-ff3"/>
                         <outlet property="option9TextField" destination="VOB-1o-rCg" id="SBx-Yk-91K"/>
                         <outlet property="optionLabel" destination="Ht9-cs-aBA" id="xKW-v3-fyI"/>
                         <outlet property="optionScrollView" destination="9e7-LT-jLN" id="E2O-o2-NB4"/>
+                        <outlet property="promptTextField" destination="lBf-LJ-bJz" id="GPC-c2-J54"/>
+                        <outlet property="questionLabel" destination="ywb-aN-Lof" id="ctn-id-5fM"/>
                         <outlet property="typePickerView" destination="7n3-q4-LhR" id="AbR-Ef-rGL"/>
                         <outlet property="typeTextField" destination="VGq-0e-Puk" id="MTQ-l4-aQ1"/>
                     </connections>
