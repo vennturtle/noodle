@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CoreLocation
 
 class Survey: NSObject {
     var id: String?
@@ -175,6 +176,28 @@ class Survey: NSObject {
                 }
             }
             print("Retrieved \(surveys.count) survey(s) associated with user (key: \(uid)). Executing callback...")
+            with(surveys)
+        })
+    }
+    
+    // download all surveys near a specified location, then executes a callback on the retrieved data
+    // this function passes in the downloaded Survey array to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func getAll(near loc: CLLocation, radiusInKm: Double = 5.0, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void){
+        let ref = dbref.child("Surveys")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            var surveys = [Survey]()
+            for snap in snapshot.children {
+                if let survey = Survey(snap as! FIRDataSnapshot) {
+                    let sloc = CLLocation(latitude: survey.latitude, longitude: survey.longitude)
+                    let dist = loc.distance(from:sloc)
+                    if dist <= radiusInKm * 1000 {
+                        surveys.append(survey)
+                    }
+                }
+            }
+            let locStr = "(\(loc.coordinate.latitude), \(loc.coordinate.longitude))"
+            print("Retrieved \(surveys.count) survey(s) within \(radiusInKm) km of \(locStr). Executing callback...")
             with(surveys)
         })
     }

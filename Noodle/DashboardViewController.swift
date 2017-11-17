@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-
+import CoreLocation
 
 
 class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -76,6 +76,14 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             Survey.getAll(byUserID: uid, dbref: self.myRef) { surveys in
                 for s in surveys {
                     print(s.title)
+                }
+            }
+            let currentLocation = CLLocation(latitude: 37.3352, longitude: -121.8811)
+            let radius = 40.0
+            Survey.getAll(near: currentLocation, radiusInKm: radius, dbref: self.myRef) { surveys in
+                print("These are all within \(radius) km of campus:")
+                for s in surveys {
+                    print("\(s.id!): \(s.title) (\(s.latitude), \(s.longitude))")
                 }
             }
             print("Model tests initiated. Awaiting response from server...")
