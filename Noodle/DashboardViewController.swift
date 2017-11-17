@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-
+import CoreLocation
 
 
 class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -72,7 +72,32 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let uid =  FIRAuth.auth()?.currentUser?.uid {
             let ref = myRef.child("Surveys").queryOrdered(byChild: "uid").queryEqual(toValue : uid )
+            
+            // model tests
+            print("Running model tests:")
+            Question.get(byID: "-Kz3WpLll869kXPj30eI", dbref: self.myRef) { question in
+                print(question?.prompt ?? "question not found")
+            }
+            Survey.get(byID: "-Kz6D0juXAl9igsEEpFo", dbref: self.myRef) { survey in
+                print(survey?.title ?? "survey not found")
+            }
+            Survey.getAll(byUserID: uid, dbref: self.myRef) { surveys in
+                for s in surveys {
+                    print(s.title)
+                }
+            }
+            let currentLocation = CLLocation(latitude: 37.3352, longitude: -121.8811)
+            let radius = 40.0
+            Survey.getAll(near: currentLocation, radiusInKm: radius, dbref: self.myRef) { surveys in
+                print("These are all within \(radius) km of campus:")
+                for s in surveys {
+                    print("\(s.id!): \(s.title) (\(s.latitude), \(s.longitude))")
+                }
+            }
+            print("Model tests initiated. Awaiting response from server...")
+            
             ref.observeSingleEvent(of:.value, with: { (snapshot) in
+                
                 
                 // ref.observeSingleEvent(of: .value, with: { snapshot in
                 for snap in snapshot.children{
