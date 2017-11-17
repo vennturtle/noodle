@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Question {
+class Question: NSObject {
     var id: String?
     var prompt: String
     var type: QuestionType
@@ -37,7 +37,7 @@ class Question {
         switch(type){ // decide if we should add options
         case .TrueOrFalse:
             guard options.count == 0 else {
-                print("Error: true-or-false questions cannot have options:")
+                print("Error: true-or-false questions cannot have \(options.count) options")
                 return nil
             }
         default:
@@ -65,8 +65,6 @@ class Question {
         guard let dict = snapshot.value as? [String:Any]    else { return nil }
         guard let prompt = dict["prompt"] as? String        else { return nil }
         guard let type = dict["type"] as? Int               else { return nil }
-        if debug { print("Question type returned successfully.") }
-        
         guard let options = dict["options"] as? [String]    else { return nil }
         if debug { print("Question options returned successfully.") }
         
@@ -77,14 +75,34 @@ class Question {
         if debug { print("Question returned successfully.") }
     }
     
-    // lazy client-side creation
-    convenience init(prompt: String, type: Int, options: [String] = []){
+    // lazy client-side creation (returns nil if type is invalid)
+    convenience init?(prompt: String, type: Int, options: [String] = []){
+        guard 0...2 ~= type else {
+            print ("Invalid question type: \(type) (must be in range 0-2)")
+            return nil
+        }
         let qtype = Question.typeDict[type]!
         self.init(prompt: prompt, type: qtype, options: options)
     }
     
     // no-args empty init
-    convenience init(){
-        self.init(prompt: "", type: 0, options: [])
+    convenience override init(){
+        self.init(prompt: "", type: 0, options: [])!
+    }
+    
+    // download a question from the server by key, and then executes a callback on the retrieved data
+    // this function passes in the downloaded Question object to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func get(byID qid: String, dbref: FIRDatabaseReference, with: @escaping (Question?) -> Void){
+        dbref.child("Questions/\(qid)").observeSingleEvent(of: .value, with: { snapshot in
+            let question = Question(snapshot)
+            
+            if question != nil {
+                print("Successfully retrieved question (key: \(qid)). Executing callback...")
+            } else {
+                print ("Error: could not retrieve question (key: \(qid). Executing callback...")
+            }
+            with(question)
+        })
     }
 }

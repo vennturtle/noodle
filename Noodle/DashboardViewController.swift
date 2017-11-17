@@ -64,7 +64,24 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let uid =  FIRAuth.auth()?.currentUser?.uid {
             let ref = myRef.child("Surveys").queryOrdered(byChild: "uid").queryEqual(toValue : uid )
+            
+            // model tests
+            print("Running model tests:")
+            Question.get(byID: "-Kz3WpLll869kXPj30eI", dbref: self.myRef) { question in
+                print(question?.prompt ?? "question not found")
+            }
+            Survey.get(byID: "-Kz6D0juXAl9igsEEpFo", dbref: self.myRef) { survey in
+                print(survey?.title ?? "survey not found")
+            }
+            Survey.getAll(byUserID: uid, dbref: self.myRef) { surveys in
+                for s in surveys {
+                    print(s.title)
+                }
+            }
+            print("Model tests initiated. Awaiting response from server...")
+            
             ref.observeSingleEvent(of:.value, with: { (snapshot) in
+                
                 
                 // ref.observeSingleEvent(of: .value, with: { snapshot in
                 for snap in snapshot.children{

@@ -23,6 +23,7 @@
 		DD9E5B6FB32C22BA307EB7A0 /* Pods_Noodle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */; };
 		E4038FD31FB521B700749742 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4038FD21FB521B700749742 /* GoogleService-Info.plist */; };
 		E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */; };
+		E46E8FA51FBEB3A10058086F /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E8FA41FBEB3A10058086F /* Answer.swift */; };
 		E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */; };
 		E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */; };
 		E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		D1E3D8C9238F17833CA8B4D1 /* Pods-NoodleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleTests/Pods-NoodleTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4038FD21FB521B700749742 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSurveyViewController.swift; sourceTree = "<group>"; };
+		E46E8FA41FBEB3A10058086F /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		E4BECBF21F9FF9E800E9B5A0 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BECBFA1F9FF9E800E9B5A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				E4DDA2AD1FBBE6A30072AC94 /* User.swift */,
 				E4DDA2AB1FBBE6350072AC94 /* Question.swift */,
 				E4BECBF51F9FF9E800E9B5A0 /* AppDelegate.swift */,
+				E46E8FA41FBEB3A10058086F /* Answer.swift */,
 				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
@@ -515,6 +518,7 @@
 				E4DDA2AE1FBBE6A30072AC94 /* User.swift in Sources */,
 				95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */,
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
+				E46E8FA51FBEB3A10058086F /* Answer.swift in Sources */,
 				50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */,
 				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,

@@ -101,7 +101,7 @@ class QuestionFormViewController: UIViewController {
             }
         }
         
-        var newQuestion = Question(prompt: prompt!, type: questionType!, options: options)
+        let newQuestion = Question(prompt: prompt!, type: questionType!, options: options)!
         questions.append(newQuestion)
         
         promptTextField.text = ""

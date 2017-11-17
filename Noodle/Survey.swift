@@ -11,6 +11,7 @@ import Firebase
 
 class Survey: NSObject {
     var id: String?
+    var uid: String?
     var title: String
     var desc: String
     var startDate: Date?
@@ -19,7 +20,6 @@ class Survey: NSObject {
     var longitude: Double
     var questions: [Question]
     var qids: [String]          // array of question keys associated with database nodes
-    
     
     // client-side creation (you can omit questions and qids)
     init(title: String, desc: String, daysAvailable: Int, latitude: Double, longitude: Double, questions: [Question] = [], qids: [String] = []){
@@ -32,10 +32,11 @@ class Survey: NSObject {
         self.qids = qids
     }
     
-    // initialization from server snapshot
+    // initialization from server snapshot, fails if no associated questions are found
     init?(_ snapshot: FIRDataSnapshot, withDebugMessages debug: Bool = false){
         let id = snapshot.key
-        if debug { print("Retrieving survey... (key: \(self.id!)") }
+        if debug { print("Retrieving survey... (key: \(id))") }
+        
         guard let dict = snapshot.value as? [String:Any]        else { return nil }
         guard let title = dict["title"] as? String              else { return nil }
         guard let desc = dict["desc"] as? String                else { return nil }
@@ -43,6 +44,18 @@ class Survey: NSObject {
         guard let daysAvailable = dict["daysAvailable"] as? Int else { return nil }
         guard let latitude = dict["latitude"] as? Double        else { return nil }
         guard let longitude = dict["longitude"] as? Double      else { return nil }
+        
+        guard let qids = dict["questions"] as? [String] else {
+            print("Aborting survey retrieval: questions could not be found.")
+            return nil
+        }
+        guard qids.count > 0 else {
+            print("Aborting survey retrieval: questions could not be found.")
+            return nil
+        }
+        if debug {
+            print("Retrieved question keys. Call getQuestions() to download the questions from the database.")
+        }
         
         self.id = id
         self.title = title
@@ -52,8 +65,8 @@ class Survey: NSObject {
         self.latitude = latitude
         self.longitude = longitude
         self.questions = []
+        self.qids = qids
         if debug { print("Survey retrieved successfully.") }
-        self.qids = dict["questions"] as? [String] ?? []
     }
     
     // no-args empty init
@@ -81,7 +94,9 @@ class Survey: NSObject {
         // (stored in database as number of milliseconds since the UNIX epoch)
         let currentDBTime = FIRServerValue.timestamp() as! [String:Any]
         
-        let survey = ["uid": authorID,
+        self.uid = authorID
+        
+        let survey = ["uid": self.uid!,
                       "title": self.title,
                       "desc": self.desc,
                       "startTime": currentDBTime,
@@ -91,8 +106,7 @@ class Survey: NSObject {
                       "questions": self.qids] as [String: Any]
         
         var childUpdates = ["/Surveys/\(self.id!)": survey,
-                            "/Users/\(authorID)/surveys/\(self.id!)": true] as [String : Any]
-        
+                            "/Users/\(self.uid!)/surveys/\(self.id!)": true] as [String : Any]
         
         for (qid, q) in zip(self.qids, self.questions) {
             if debug { print("Submitting question... (key: \(qid))") }
@@ -101,7 +115,7 @@ class Survey: NSObject {
                 return nil
             }
             childUpdates["/Questions/\(qid)"] = question
-            if debug { print("Survey successfully submitted to database. (key: \(qid))") }
+            if debug { print("Question successfully submitted to database. (key: \(qid))") }
         }
         dbref.updateChildValues(childUpdates)
         
@@ -109,36 +123,59 @@ class Survey: NSObject {
         return self.id!
     }
     
+    // append a question to the question array
     func addQuestion(_ question: Question){
         questions.append(question)
     }
-}
-/* reference code
-// retrieving all surveys stored in the database
-print("\n\nCurrent Surveys:")
-self.myRef.child("Surveys").observe(.value, with: { snapshot in
-    for child in snapshot.children {
-        let values = child as? FIRDataSnapshot
-        let model = Survey(snapshot: values!)!
-        print(model.id)
-        print(model.title)
-        print(model.startDate)
-    }
-})
-
-// submitting a new survey to the database
-var myRef = FIRDatabase.database().reference()
-if let uid = FIRAuth.auth()?.currentUser?.uid{
-    let startDate = FIRServerValue.timestamp() as! [String:Any]
-    let key = myRef.child("Surveys").childByAutoId().key
-    let survey = ["uid": uid,
-                  "title": "A Study On Bananas",
-                  "desc": "A formal study on the nature of bananas",
-                  "startTime": startDate,
-                  "daysAvailable": 1,
-                  "latitude": 37.335,
-                  "longitude": -121.819] as [String : Any]
     
-    let childUpdates = ["/Surveys/\(key)": survey]
-    myRef.updateChildValues(childUpdates)
-}*/
+    // retrieve a question from the database, provided qids are available
+    // you must include a callback that will execute after downloading is finished
+    // (this callback is passed the new Question object, and can be used to update views with information)
+    func getQuestion(dbref: FIRDatabaseReference, index: Int, with: @escaping (Question) -> Void){
+        if qids.count > index {
+            let qid = qids[index]
+            dbref.child("Questions/\(qid)").observeSingleEvent(of: .value, with: { snapshot in
+                if let question = Question(snapshot) {
+                    with(question)
+                }
+            })
+        } else { print("Error: Question \(index+1) does not exist for survey (key: \(self.id ?? "None")).") }
+    }
+    
+    // download a survey from the server by key, and then execute a callback on the retrieved data
+    // this function passes in the downloaded Survey object to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func get(byID sid: String, dbref: FIRDatabaseReference, with: @escaping (Survey?) -> Void){
+        dbref.child("Surveys/\(sid)").observeSingleEvent(of: .value, with: { snapshot in
+            let survey = Survey(snapshot)
+            
+            if survey != nil {
+                print("Successfully retrieved survey (key: \(sid)). Executing callback...")
+            } else {
+                print ("Error: could not retrieve survey (key: \(sid). Executing callback...")
+            }
+            with(survey)
+        })
+    }
+    
+    // download all surveys by a specified user, then executes a callback on the retrieved data
+    // this function passes in the downloaded Survey array to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func getAll(byUserID uid: String, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void){
+        let ref = dbref.child("Surveys").queryOrdered(byChild: "uid").queryEqual(toValue: uid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            var surveys = [Survey]()
+            for snap in snapshot.children {
+                if let survey = Survey(snap as! FIRDataSnapshot) {
+                    //print("Found survey (key: \(survey.id ?? "None"))")
+                    surveys.append(survey)
+                }
+                else {
+                    print("Could not retrieve survey (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
+                }
+            }
+            print("Retrieved \(surveys.count) survey(s) associated with user (key: \(uid)). Executing callback...")
+            with(surveys)
+        })
+    }
+}
