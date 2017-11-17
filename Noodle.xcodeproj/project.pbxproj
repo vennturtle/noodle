@@ -15,6 +15,7 @@
 		95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */; };
 		95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */; };
 		95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */; };
+		95BC87DE1FBEAF3E00950B20 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC87DD1FBEAF3E00950B20 /* StatsViewController.swift */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
 		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
@@ -63,6 +64,7 @@
 		95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListViewController.swift; sourceTree = "<group>"; };
 		95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListTableViewCell.swift; sourceTree = "<group>"; };
 		95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		95BC87DD1FBEAF3E00950B20 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
 				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
 				95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */,
+				95BC87DD1FBEAF3E00950B20 /* StatsViewController.swift */,
 				E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */,
 				95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */,
 				95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */,
@@ -516,6 +519,7 @@
 				95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */,
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
 				50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */,
+				95BC87DE1FBEAF3E00950B20 /* StatsViewController.swift in Sources */,
 				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
 				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,

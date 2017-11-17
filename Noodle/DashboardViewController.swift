@@ -55,6 +55,14 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     
+    func tableView(_ didSelectRowAttableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+     //   let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "Stats") as! StatsViewController
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
     
     
