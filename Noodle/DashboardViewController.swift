@@ -13,6 +13,7 @@ import FirebaseDatabase
 import CoreLocation
 
 
+
 class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var myRef = FIRDatabase.database().reference()
@@ -20,17 +21,22 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     var surveyUpdateHandle: FIRDatabaseHandle?
     var surveyUpdateQuery: FIRDatabaseQuery?
     
+    //tableView outlet
     @IBOutlet weak var tableView: UITableView!
+    
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "home", for: indexPath) as! HomeTableViewCell
+        
         
         cell.titleLabel.text = currentSurveys[indexPath.row].title
         cell.timeLabel.text = String(currentSurveys[indexPath.row].daysAvailable)
         cell.descriptionLabel.text = currentSurveys[indexPath.row].desc
         return cell
     }
+    
+    
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +101,30 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    
+    //segues into stats view controller when a cell is selected
+    func tableView(_ didSelectRowAttableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        
+        print("\n\n\n\n\n")
+        
+        
+        //gets the cell the user clicks on
+        print("row: \(indexPath.row)")
+        
+        let cellSelected = indexPath.row
+        let sur =  currentSurveys[cellSelected]
+        
+        print("\n\n\n\n\n")
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "Stats") as! StatsViewController
+        controller.survey = sur
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    
+    
     @IBAction func unwindFromSurveyList(segue: UIStoryboardSegue){}
     
     

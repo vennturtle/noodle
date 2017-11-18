@@ -11,12 +11,12 @@
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
 		50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D384081FBA75690024F5CC /* QuestionFormViewController.swift */; };
+		950FE9261FBFF7D3002724DF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950FE9241FBFF7D3002724DF /* Home.storyboard */; };
 		95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */; };
 		95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */; };
 		95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */; };
-		95B70DC31FBFF59A00FEC1C7 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */; };
-		95B70DC61FBFF5AE00FEC1C7 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */; };
-		95B70DC81FBFF60600FEC1C7 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */; };
+		95AB33F31FBFF73A00527AAF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AB33F21FBFF73A00527AAF /* DashboardViewController.swift */; };
+		95AB33F51FBFF74600527AAF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AB33F41FBFF74600527AAF /* StatsViewController.swift */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
 		95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885541FB412420000DE6B /* ResetPasswordViewController.swift */; };
@@ -61,12 +61,12 @@
 		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
 		50D384081FBA75690024F5CC /* QuestionFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFormViewController.swift; sourceTree = "<group>"; };
 		5F2AD29291B7904834F95C44 /* Pods-Noodle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.release.xcconfig"; sourceTree = "<group>"; };
+		950FE9251FBFF7D3002724DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListViewController.swift; sourceTree = "<group>"; };
 		95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListTableViewCell.swift; sourceTree = "<group>"; };
 		95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatsViewController.swift; path = "../../../Downloads/noodle-master/Noodle/StatsViewController.swift"; sourceTree = "<group>"; };
-		95B70DC51FBFF5AE00FEC1C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../Downloads/noodle-master/Noodle/Base.lproj/Home.storyboard"; sourceTree = "<group>"; };
-		95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = "../../../Downloads/noodle-master/Noodle/DashboardViewController.swift"; sourceTree = "<group>"; };
+		95AB33F21FBFF73A00527AAF /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		95AB33F41FBFF74600527AAF /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		95E885541FB412420000DE6B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -181,12 +181,12 @@
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
 				95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */,
-				95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */,
+				95AB33F21FBFF73A00527AAF /* DashboardViewController.swift */,
 				E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */,
 				95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */,
-				95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */,
+				950FE9241FBFF7D3002724DF /* Home.storyboard */,
+				95AB33F41FBFF74600527AAF /* StatsViewController.swift */,
 				95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */,
-				95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */,
 				50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */,
 				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
 				50D384081FBA75690024F5CC /* QuestionFormViewController.swift */,
@@ -335,7 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B70DC61FBFF5AE00FEC1C7 /* Home.storyboard in Resources */,
+				950FE9261FBFF7D3002724DF /* Home.storyboard in Resources */,
 				50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */,
 				E4038FD31FB521B700749742 /* GoogleService-Info.plist in Resources */,
 				50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */,
@@ -530,9 +530,9 @@
 				95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */,
 				E4DDA2AC1FBBE6350072AC94 /* Question.swift in Sources */,
 				95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */,
-				95B70DC31FBFF59A00FEC1C7 /* StatsViewController.swift in Sources */,
 				E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */,
-				95B70DC81FBFF60600FEC1C7 /* DashboardViewController.swift in Sources */,
+				95AB33F51FBFF74600527AAF /* StatsViewController.swift in Sources */,
+				95AB33F31FBFF73A00527AAF /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,10 +584,10 @@
 			name = CreateSurvey.storyboard;
 			sourceTree = "<group>";
 		};
-		95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */ = {
+		950FE9241FBFF7D3002724DF /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				95B70DC51FBFF5AE00FEC1C7 /* Base */,
+				950FE9251FBFF7D3002724DF /* Base */,
 			);
 			name = Home.storyboard;
 			sourceTree = "<group>";
