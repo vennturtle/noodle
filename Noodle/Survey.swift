@@ -201,4 +201,27 @@ class Survey: NSObject {
             with(surveys)
         })
     }
+    
+    // download all surveys by a specified user, then executes a callback on the retrieved data
+    // this function passes in the downloaded Survey array to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    // this function executes the callback whenever a change to the user's surveys is detected
+    static func keepGettingAll(byUserID uid: String, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void) -> (FIRDatabaseQuery, FIRDatabaseHandle) {
+        let ref = dbref.child("Surveys").queryOrdered(byChild: "uid").queryEqual(toValue: uid)
+        let handle = ref.observe(.value, with: { snapshot in
+            var surveys = [Survey]()
+            for snap in snapshot.children {
+                if let survey = Survey(snap as! FIRDataSnapshot) {
+                    //print("Found survey (key: \(survey.id ?? "None"))")
+                    surveys.append(survey)
+                }
+                else {
+                    print("Could not retrieve survey (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
+                }
+            }
+            print("Retrieved \(surveys.count) survey(s) associated with user (key: \(uid)). Executing callback...")
+            with(surveys)
+        })
+        return (ref, handle)
+    }
 }
