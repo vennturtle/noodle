@@ -44,6 +44,22 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        if titleTextField.text != ""
+            && descriptionTextView.text != ""
+            && daysTextfield.text != "" {
+            performSegue(withIdentifier: "GoToQuestionSegue", sender: sender)
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "All fields must be filled out.", preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "QuestionSegue" {
             let navigationController = segue.destination as! UINavigationController
@@ -71,14 +87,11 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
         }
         let uid = FIRAuth.auth()?.currentUser?.uid
         _ = newSurvey.submit(dbref: myRef!, authorID: uid!)
+        dismiss(animated: true, completion: nil)
     }
 
     
-    @IBAction func enableLocation(_ sender: Any) {
-        locationPicker.isHidden = !useLocation.isOn
-        manager.requestWhenInUseAuthorization()
-
-    }
+   
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.denied){
@@ -104,7 +117,7 @@ class CreateSurveyViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        manager.requestWhenInUseAuthorization()
         self.hideKeyboardWhenTappedAround()
 
         manager.delegate = self

@@ -105,7 +105,9 @@ class QuestionFormViewController: UIViewController {
         questions.append(newQuestion)
         
         promptTextField.text = ""
-        typeTextField.text = ""
+        typeTextField.text = "True or False"
+        optionLabel.isHidden = true
+        optionScrollView.isHidden = true
         option1TextField.text = ""
         option2TextField.text = ""
         option3TextField.text = ""
@@ -120,8 +122,11 @@ class QuestionFormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        typeTextField.text = "True or False"
         self.hideKeyboardWhenTappedAround()
+        
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -178,6 +183,7 @@ extension QuestionFormViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.typeTextField {
             questionType = typeTextField.text!
+            textField.endEditing(true)
             self.typePickerView.isHidden = false
         }
     }
