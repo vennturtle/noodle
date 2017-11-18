@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		086031EEDFC4380CEA78500D /* Pods_NoodleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5FCC2AFC1B293F484E57A5 /* Pods_NoodleUITests.framework */; };
-		50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF42181FA00CC900D4F252 /* Home.storyboard */; };
 		50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */; };
 		50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */; };
 		50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D384081FBA75690024F5CC /* QuestionFormViewController.swift */; };
 		95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */; };
 		95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */; };
 		95A77F201FBA5FE100B807F9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */; };
+		95B70DC31FBFF59A00FEC1C7 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */; };
+		95B70DC61FBFF5AE00FEC1C7 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */; };
+		95B70DC81FBFF60600FEC1C7 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */; };
 		95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */; };
 		95E885511FB3F43C0000DE6B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885501FB3F43C0000DE6B /* SignInViewController.swift */; };
-		95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885521FB40BD20000DE6B /* DashboardViewController.swift */; };
 		95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E885541FB412420000DE6B /* ResetPasswordViewController.swift */; };
 		D6AD6203460700600B607513 /* Pods_NoodleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */; };
 		DD9E5B6FB32C22BA307EB7A0 /* Pods_Noodle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */; };
@@ -56,7 +57,6 @@
 		0AB6E9BAC4242E89D6CE6B7E /* Pods_NoodleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoodleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1689888EFFAF1224E24FE056 /* Pods_Noodle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noodle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F410A6D2BD6E2E4242D108 /* Pods-NoodleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		50AF42191FA00CC900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		50AF421C1FA00DA800D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SurveyList.storyboard; sourceTree = "<group>"; };
 		50AF421F1FA017F900D4F252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateSurvey.storyboard; sourceTree = "<group>"; };
 		50D384081FBA75690024F5CC /* QuestionFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFormViewController.swift; sourceTree = "<group>"; };
@@ -64,9 +64,11 @@
 		95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListViewController.swift; sourceTree = "<group>"; };
 		95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListTableViewCell.swift; sourceTree = "<group>"; };
 		95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatsViewController.swift; path = "../../../Downloads/noodle-master/Noodle/StatsViewController.swift"; sourceTree = "<group>"; };
+		95B70DC51FBFF5AE00FEC1C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../Downloads/noodle-master/Noodle/Base.lproj/Home.storyboard"; sourceTree = "<group>"; };
+		95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = "../../../Downloads/noodle-master/Noodle/DashboardViewController.swift"; sourceTree = "<group>"; };
 		95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95E885501FB3F43C0000DE6B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		95E885521FB40BD20000DE6B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		95E885541FB412420000DE6B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BCF147094E5279FE3F9918BF /* Pods-Noodle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noodle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Noodle/Pods-Noodle.debug.xcconfig"; sourceTree = "<group>"; };
 		C794588942B9CFAA2FCD4E59 /* Pods-NoodleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoodleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NoodleUITests/Pods-NoodleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,16 +180,17 @@
 				95E885501FB3F43C0000DE6B /* SignInViewController.swift */,
 				95E8854E1FB3E98C0000DE6B /* SignUpViewController.swift */,
 				95E885541FB412420000DE6B /* ResetPasswordViewController.swift */,
-				95E885521FB40BD20000DE6B /* DashboardViewController.swift */,
 				95A77F1F1FBA5FE100B807F9 /* HomeTableViewCell.swift */,
+				95B70DC71FBFF60600FEC1C7 /* DashboardViewController.swift */,
 				E41910CE1FA022F800060CF7 /* CreateSurveyViewController.swift */,
 				95A77F191FBA5BEE00B807F9 /* SurveyListViewController.swift */,
+				95B70DC21FBFF59A00FEC1C7 /* StatsViewController.swift */,
 				95A77F1B1FBA5CF700B807F9 /* SurveyListTableViewCell.swift */,
+				95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */,
 				50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */,
 				50AF421E1FA017F900D4F252 /* CreateSurvey.storyboard */,
 				50D384081FBA75690024F5CC /* QuestionFormViewController.swift */,
 				E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */,
-				50AF42181FA00CC900D4F252 /* Home.storyboard */,
 				E4BECBFC1F9FF9E800E9B5A0 /* Assets.xcassets */,
 				E4BECBFE1F9FF9E800E9B5A0 /* LaunchScreen.storyboard */,
 				E4BECC011F9FF9E800E9B5A0 /* Info.plist */,
@@ -332,13 +335,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B70DC61FBFF5AE00FEC1C7 /* Home.storyboard in Resources */,
 				50AF42201FA017F900D4F252 /* CreateSurvey.storyboard in Resources */,
 				E4038FD31FB521B700749742 /* GoogleService-Info.plist in Resources */,
 				50AF421D1FA00DA800D4F252 /* SurveyList.storyboard in Resources */,
 				E4BECC001F9FF9E800E9B5A0 /* LaunchScreen.storyboard in Resources */,
 				E4BECBFD1F9FF9E800E9B5A0 /* Assets.xcassets in Resources */,
 				E4BECBFB1F9FF9E800E9B5A0 /* Main.storyboard in Resources */,
-				50AF421A1FA00CC900D4F252 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +523,6 @@
 				E4BECBF61F9FF9E800E9B5A0 /* AppDelegate.swift in Sources */,
 				E46E8FA51FBEB3A10058086F /* Answer.swift in Sources */,
 				50D384091FBA75690024F5CC /* QuestionFormViewController.swift in Sources */,
-				95E885531FB40BD20000DE6B /* DashboardViewController.swift in Sources */,
 				95E885551FB412420000DE6B /* ResetPasswordViewController.swift in Sources */,
 				95E8854F1FB3E98C0000DE6B /* SignUpViewController.swift in Sources */,
 				E4DDA2AA1FBBE61A0072AC94 /* Survey.swift in Sources */,
@@ -528,7 +530,9 @@
 				95A77F1C1FBA5CF700B807F9 /* SurveyListTableViewCell.swift in Sources */,
 				E4DDA2AC1FBBE6350072AC94 /* Question.swift in Sources */,
 				95A77F1A1FBA5BEE00B807F9 /* SurveyListViewController.swift in Sources */,
+				95B70DC31FBFF59A00FEC1C7 /* StatsViewController.swift in Sources */,
 				E41910CF1FA022F800060CF7 /* CreateSurveyViewController.swift in Sources */,
+				95B70DC81FBFF60600FEC1C7 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,14 +568,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		50AF42181FA00CC900D4F252 /* Home.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50AF42191FA00CC900D4F252 /* Base */,
-			);
-			name = Home.storyboard;
-			sourceTree = "<group>";
-		};
 		50AF421B1FA00DA800D4F252 /* SurveyList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -586,6 +582,14 @@
 				50AF421F1FA017F900D4F252 /* Base */,
 			);
 			name = CreateSurvey.storyboard;
+			sourceTree = "<group>";
+		};
+		95B70DC41FBFF5AE00FEC1C7 /* Home.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95B70DC51FBFF5AE00FEC1C7 /* Base */,
+			);
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 		E4BECBF91F9FF9E800E9B5A0 /* Main.storyboard */ = {
