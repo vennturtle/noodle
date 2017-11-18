@@ -90,6 +90,8 @@ class Question: NSObject {
         self.init(prompt: "", type: 0, options: [])!
     }
     
+    /*** STATIC FUNCTIONS FOR QUERYING FROM DATABASE ***/
+    
     // download a question from the server by key, and then executes a callback on the retrieved data
     // this function passes in the downloaded Question object to the included callback
     // (typically this callback is used to grab the data and update views with information)

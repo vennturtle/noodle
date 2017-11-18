@@ -92,6 +92,30 @@ class Answer: NSObject {
         })
     }
     
+    // given an array of answers and a question, finds how many times every possible choice was picked
+    // (e.g. for a T/F question with 18 answers, this might return [7, 11] where choice 0 means true)
+    // if you're analyzing question one, ofQuestion = 1
+    static func getFrequency(ofQuestion indexPlusOne:Int, from answers: [Answer]) -> [Int]? {
+        let question = indexPlusOne - 1
+        guard answers.count > 0 else        { return nil }
+        
+        let numChoices = answers[0].choices.count
+        guard question < numChoices else    { return nil }
+        
+        // will store choice frequencies, initialize each to 0
+        var picked = [Int](repeating: 0, count: numChoices)
+        for answer in answers {
+            for choice in 0..<numChoices {
+                if answer.choices[question].contains(choice){
+                    picked[choice] += 1
+                }
+            }
+        }
+        return picked
+    }
+    
+    /*** STATIC FUNCTIONS FOR QUERYING FROM DATABASE ***/
+    
     // download all answers for a specified survey, then executes a callback on the retrieved data
     // this function passes in the downloaded Answer array to the included callback
     // (typically this callback is used to grab the data and update views with information)
@@ -112,25 +136,23 @@ class Answer: NSObject {
         })
     }
     
-    // given an array of answers and a question, finds how many times every possible choice was picked
-    // (e.g. for a T/F question with 18 answers, this might return [7, 11] where choice 0 means true)
-    // if you're analyzing question one, ofQuestion = 1
-    static func getFrequency(ofQuestion indexPlusOne:Int, from answers: [Answer]) -> [Int]? {
-        let question = indexPlusOne - 1
-        guard answers.count > 0 else    { return nil }
-        
-        let numChoices = answers[0].choices.count
-        guard question < numChoices else       { return nil }
-        
-        // will store choice frequencies, initialize each to 0
-        var picked = [Int](repeating: 0, count: numChoices)
-        for answer in answers {
-            for choice in 0..<numChoices {
-                if answer.choices[question].contains(choice){
-                    picked[choice] += 1
+    // download all answers by a certain user, then executes a callback on the retrieved data
+    // this function passes in the downloaded Answer array to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func getAll(byUserID uid: String, dbref: FIRDatabaseReference, with: @escaping ([Answer]) -> Void){
+        let ref = dbref.child("Answers").queryOrdered(byChild: "uid").queryEqual(toValue: uid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            var answers = [Answer]()
+            for snap in snapshot.children {
+                if let ans = Answer(snap as! FIRDataSnapshot) {
+                    answers.append(ans)
+                }
+                else {
+                    print("Could not retrieve answer (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
                 }
             }
-        }
-        return picked
+            print("Retrieved \(answers.count) answer(s) associated with user (key: \(uid)). Executing callback...")
+            with(answers)
+        })
     }
 }

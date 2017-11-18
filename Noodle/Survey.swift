@@ -22,6 +22,11 @@ class Survey: NSObject {
     var questions: [Question]
     var qids: [String]          // array of question keys associated with database nodes
     
+    var endDate: Date? {
+        guard let now = startDate else { return nil }
+        return Calendar.current.date(byAdding: .day, value: daysAvailable, to: now)
+    }
+    
     // client-side creation (you can omit questions and qids)
     init(title: String, desc: String, daysAvailable: Int, latitude: Double, longitude: Double, questions: [Question] = [], qids: [String] = []){
         self.title = title
@@ -75,6 +80,30 @@ class Survey: NSObject {
         self.init(title: "", desc: "", daysAvailable: 0, latitude: 0.0, longitude: 0.0)
     }
     
+    // gets the time remaining from a certain date (current time by default)
+    func timeRemaining(from: Date = Date()) -> TimeInterval? {
+        return endDate?.timeIntervalSince(from)
+    }
+    
+    // gets the time remaining from a certain date as a string (current time by default)
+    func timeRemainingString(from: Date = Date()) -> String? {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.maximumUnitCount = 2
+        formatter.allowedUnits = [.day, .hour, .minute]
+        
+        if let remaining = endDate?.timeIntervalSince(from) {
+            return formatter.string(from: remaining)
+        } else {
+            return nil
+        }
+    }
+    
+    // append a question to the question array
+    func addQuestion(_ question: Question){
+        questions.append(question)
+    }
+    
     // submits the survey if it currently has no key, returns the key of the newly stored survey
     func submit(dbref: FIRDatabaseReference, authorID: String, withDebugMessages debug: Bool = false) -> String? {
         guard self.id == nil else {
@@ -124,11 +153,6 @@ class Survey: NSObject {
         return self.id!
     }
     
-    // append a question to the question array
-    func addQuestion(_ question: Question){
-        questions.append(question)
-    }
-    
     // retrieve a question from the database, provided qids are available
     // you must include a callback that will execute after downloading is finished
     // (this callback is passed the new Question object, and can be used to update views with information)
@@ -142,6 +166,8 @@ class Survey: NSObject {
             })
         } else { print("Error: Question \(index+1) does not exist for survey (key: \(self.id ?? "None")).") }
     }
+    
+    /*** STATIC FUNCTIONS FOR QUERYING FROM DATABASE ***/
     
     // download a survey from the server by key, and then execute a callback on the retrieved data
     // this function passes in the downloaded Survey object to the included callback
