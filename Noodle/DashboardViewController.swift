@@ -20,7 +20,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     var surveyUpdateHandle: FIRDatabaseHandle?
     var surveyUpdateQuery: FIRDatabaseQuery?
     
+    //tableView outlet 
     @IBOutlet weak var tableView: UITableView!
+   
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,6 +97,17 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    
+    //segues into stats view controller when a cell is selected
+    func tableView(_ didSelectRowAttableView: UITableView, didSelectRowAt indexPath: IndexPath){
+      
+        let controller = storyboard?.instantiateViewController(withIdentifier: "Stats") as! StatsViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    
+    
     @IBAction func unwindFromSurveyList(segue: UIStoryboardSegue){}
     
     
