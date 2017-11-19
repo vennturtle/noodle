@@ -38,26 +38,14 @@ class AnnotationDetails: NSObject, MKAnnotation{
     }
 }
 
-class PinLocation: NSObject {
-    //I think here is where I should load the surveys??
-    var surveyPin = [AnnotationDetails]()
-    override init(){
-        surveyPin += [AnnotationDetails(title:"THis is the Title",subtitle: "this is a long description to test what it would look like",lat:37.3352,long:-121.8811)]
-        surveyPin += [AnnotationDetails(title:"SRVY2",subtitle: "desc",lat:37.337666,long: -121.885907)]
-        surveyPin += [AnnotationDetails(title:"SRVY3",subtitle: "desc",lat:37.3382,long: -121.8812)]
-    }
-}
 
 class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     let initialPin = CLLocationCoordinate2DMake(37.3300, -121.8800)
-    //let surveys = PinLocation().surveyPin
     var myRef = FIRDatabase.database().reference()
     
     var currentSurveys: [Survey] = []
-    var surveyUpdateHandle: FIRDatabaseHandle?
-    var surveyUpdateQuery: FIRDatabaseQuery?
     let regionRadius: CLLocationDistance = 1000 // 1KM ~ 0.621371 miles
     let manager = CLLocationManager()
     var selectedAnnotation: MKPointAnnotation!
@@ -74,8 +62,6 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
         mapZoom(at: initialPin, radius: 5000)
-        
-        // mapView.addAnnotations(surveys)
     }
     
     func retrieveNearbyAndUpdate(){
@@ -113,7 +99,8 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     }
     
     func mapZoom(){
-        let region = MKCoordinateRegionMakeWithDistance(initialPin, 5000, 5000)
+        let UserCurrentLocation = (manager.location?.coordinate)!
+        let region = MKCoordinateRegionMakeWithDistance(UserCurrentLocation, 5000, 5000)
         mapView.setRegion(region, animated: true)
     }
     
