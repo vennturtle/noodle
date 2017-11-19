@@ -20,6 +20,7 @@ class AnnotationDetails: NSObject, MKAnnotation{
     var subtitle: String?
     var lat: Double?
     var long: Double?
+    var survey: Survey?
     
     init(title: String, subtitle: String, lat:CLLocationDegrees,long:CLLocationDegrees){
         self.title = title
@@ -30,8 +31,9 @@ class AnnotationDetails: NSObject, MKAnnotation{
     }
     
     init(survey: Survey){
+        self.survey = survey
         self.title = survey.title
-        self.subtitle = survey.desc
+        self.subtitle = "\(survey.desc)\n\nTime left: \(survey.timeRemainingString()!)"
         self.coordinate = CLLocationCoordinate2DMake(survey.latitude, survey.longitude)
     }
 }
@@ -156,12 +158,20 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
                 let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
                 view.isEnabled = true
                 view.canShowCallout = true
-                //view.detailCalloutAccessoryView = self.configureDetailView(annotationView: view)
+                view.detailCalloutAccessoryView = self.configureDetailView(annotation: annotation)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 return view
             }
         }
         return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect: MKAnnotationView) {
+        //self.selectedAnnotation = view.annotation as? MKPointAnnotation
+        if let annoDetails = didSelect.annotation as? AnnotationDetails {
+            self.mapZoom(at: annoDetails.coordinate)
+        }
+
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -176,16 +186,20 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         }
     }
     
-    /*func configureDetailView(annotationView: MKAnnotationView) -> UIView {
-        let snapshotView = UIView()
-        let views = ["snapshotView": snapshotView]
-        snapshotView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[snapshotView(200)]", options: [], metrics: nil, views: views))
-        snapshotView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[snapshotView(75)]", options: [], metrics: nil, views: views))
+    func configureDetailView(annotation: AnnotationDetails) -> UIView {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 21))
+        label.text = annotation.subtitle
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 12)
         
-        //do your work
+        let width = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 250)
+        label.addConstraint(width)
         
-        return snapshotView
-    }*/
+        let height = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 120)
+        label.addConstraint(height)
+        
+        return label
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
