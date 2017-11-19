@@ -13,28 +13,24 @@ import CoreLocation
 import Firebase
 import FirebaseDatabase
 
-class AnnotationDetails: NSObject, MKAnnotation{
+class SurveyAnnotation: NSObject, MKAnnotation {
     var identifier = "TakeSurvey"
-    var title: String?
-    var coordinate: CLLocationCoordinate2D
-    var subtitle: String?
-    var lat: Double?
-    var long: Double?
-    var survey: Survey?
+    var survey: Survey
     
-    init(title: String, subtitle: String, lat:CLLocationDegrees,long:CLLocationDegrees){
-        self.title = title
-        self.subtitle = subtitle
-        self.coordinate = CLLocationCoordinate2DMake(lat, long)
-        
-        super.init()
+    var title: String? {
+        return survey.title
+    }
+    var subtitle: String? {
+        guard let remaining = survey.timeRemainingString() else { return nil }
+        return "\(survey.desc)\n\nTime left: \(remaining)"
+    }
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(survey.latitude, survey.longitude)
     }
     
-    init(survey: Survey){
+    init(_ survey: Survey){
         self.survey = survey
-        self.title = survey.title
-        self.subtitle = "\(survey.desc)\n\nTime left: \(survey.timeRemainingString()!)"
-        self.coordinate = CLLocationCoordinate2DMake(survey.latitude, survey.longitude)
+        super.init()
     }
 }
 
@@ -69,15 +65,17 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
                 // asynchronously retrieves nearby surveys, updates the map once it's done
                 Survey.getAll(near: newLocation, radiusInMeters: self.regionRadius, dbref: self.myRef) { surveys in
                     self.currentSurveys = surveys
-                    var fuckit = [AnnotationDetails]()
+                    var fuckit = [SurveyAnnotation]()
                     let coord = newLocation.coordinate
                     print("These are all within \(self.regionRadius) m of \(coord):")
                     for s in surveys {
                         print("\(s.id!): \(s.title) (\(s.latitude), \(s.longitude))")
-                        fuckit += [AnnotationDetails(survey: s)]
+                        fuckit += [SurveyAnnotation(s)]
                     }
                     DispatchQueue.main.async {
-                        self.updateSurveyPins(nowInRange: fuckit)
+                        let toDelete = self.mapView.annotations.filter { $0 is SurveyAnnotation }
+                        self.mapView.removeAnnotations(toDelete)
+                        self.mapView.addAnnotations(fuckit)
                     }
                 }
             }
@@ -97,43 +95,16 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         mapZoom(at: initialPin, radius: regionRadius)
     }
     
-    // updates pins on the map
-    func updateSurveyPins(nowInRange: [AnnotationDetails]){
-        // start with all newly-in-range pins, only add pins not already in map
-        var toAdd = Set<AnnotationDetails>(nowInRange)
-        print("Found \(nowInRange.count) surveys in range.")
-        
-        // look through current pins, only collect pins that are no longer in range for deletion
-        let toDelete = self.mapView.annotations.filter { old in
-            // only delete AnnotationDetails (i.e. not MKUserLocation)
-            if let oldAD = old as? AnnotationDetails {
-                // only delete if it's not one of the pins that are now in range
-                if toAdd.remove(oldAD) == nil { // returns nil if it's not one of the new pins
-                    return true
-                }
-            }
-            return false
-        }
-        
-        print("Map already contains \(nowInRange.count - toAdd.count) of these surveys.")
-        print("Adding \(toAdd.count) new pins. Removing \(toDelete.count) old pins")
-        
-        // delete out-of-range pins, add new pins,
-        // don't touch the rest of the old pins (or user's current location)
-        self.mapView.removeAnnotations(toDelete)
-        self.mapView.addAnnotations([AnnotationDetails](toAdd))
-    }
-    
     // centers the map on the current user location
     func mapZoom(){
         let UserCurrentLocation = (manager.location?.coordinate)!
-        let region = MKCoordinateRegionMakeWithDistance(UserCurrentLocation, regionRadius, regionRadius)
+        let region = MKCoordinateRegionMakeWithDistance(UserCurrentLocation, 2*regionRadius, 2*regionRadius)
         mapView.setRegion(region, animated: true)
     }
     
     // centers the map on an arbitrary location
     func mapZoom(at: CLLocationCoordinate2D, radius: Double = 5000){
-        let region = MKCoordinateRegionMakeWithDistance(at, radius, radius)
+        let region = MKCoordinateRegionMakeWithDistance(at, 2*radius, 2*radius)
         mapView.setRegion(region, animated: true)
     }
     
@@ -179,7 +150,7 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     
     //make changes ot the annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? AnnotationDetails{
+        if let annotation = annotation as? SurveyAnnotation{
             if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
                 return view
             } else {
@@ -195,7 +166,7 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     }
     
     // customizes the size of the annotation's callout detail, allows word wrap
-    func configureDetailView(annotation: AnnotationDetails) -> UIView {
+    func configureDetailView(annotation: SurveyAnnotation) -> UIView {
         // initialize label to be used as the callout detail
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 21))
         //label.font = UIFont.systemFont(ofSize: 12)
@@ -217,7 +188,7 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     // map view delegate function, handles tapping on a survey pin
     func mapView(_ mapView: MKMapView, didSelect: MKAnnotationView) {
         // when user taps a survey pin, map centers on the pin's location
-        if let annoDetails = didSelect.annotation as? AnnotationDetails {
+        if let annoDetails = didSelect.annotation as? SurveyAnnotation {
             self.mapZoom(at: annoDetails.coordinate)
         }
     }

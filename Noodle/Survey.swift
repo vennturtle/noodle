@@ -96,13 +96,17 @@ class Survey: NSObject {
     
     // gets the time remaining from a certain date as a string (current time by default)
     func timeRemainingString(from: Date = Date()) -> String? {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.maximumUnitCount = 2
-        formatter.allowedUnits = [.day, .hour, .minute]
-        
         if let remaining = endDate?.timeIntervalSince(from) {
-            return formatter.string(from: remaining)
+            if remaining > 0 {
+                let formatter = DateComponentsFormatter()
+                formatter.unitsStyle = .abbreviated
+                formatter.maximumUnitCount = 2
+                formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
+                
+                return formatter.string(from: remaining)
+            } else {
+                return "none"
+            }
         } else {
             return nil
         }
