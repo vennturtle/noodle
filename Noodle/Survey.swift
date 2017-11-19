@@ -27,6 +27,15 @@ class Survey: NSObject {
         return Calendar.current.date(byAdding: .day, value: daysAvailable, to: now)
     }
     
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(latitude, longitude)
+    }
+    
+    var isOpen: Bool {
+        guard let remaining = timeRemaining() else { return false }
+        return remaining <= 0.0
+    }
+    
     // client-side creation (you can omit questions and qids)
     init(title: String, desc: String, daysAvailable: Int, latitude: Double, longitude: Double, questions: [Question] = [], qids: [String] = []){
         self.title = title
