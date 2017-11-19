@@ -44,12 +44,45 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     
     let initialPin = CLLocationCoordinate2DMake(37.3300, -121.8800)
     var myRef = FIRDatabase.database().reference()
-    
     var currentSurveys: [Survey] = []
-    let regionRadius: CLLocationDistance = 1000 // 1KM ~ 0.621371 miles
+    let regionRadius: CLLocationDistance = 5000  // in meters
+    let updateThreshold: CLLocationDistance = 10 // in meters
     let manager = CLLocationManager()
     var selectedAnnotation: MKPointAnnotation!
-    var lastUpdatedLocation: CLLocation?
+    
+    // when a new location is assigned to this, the map updates automatically
+    var lastUpdatedLocation: CLLocation? {
+        willSet(newValue) {
+            if newValue == nil {
+                print("Resetting location updates.")
+            }
+            else if lastUpdatedLocation == nil {
+                print("Initial update at \(newValue!.coordinate)...")
+            }
+            else {
+                print("Updating at new location \(newValue!.coordinate)...")
+            }
+        }
+        
+        didSet {
+            if let newLocation = self.lastUpdatedLocation {
+                // asynchronously retrieves nearby surveys, updates the map once it's done
+                Survey.getAll(near: newLocation, radiusInMeters: self.regionRadius, dbref: self.myRef) { surveys in
+                    self.currentSurveys = surveys
+                    var fuckit = [AnnotationDetails]()
+                    let coord = newLocation.coordinate
+                    print("These are all within \(self.regionRadius) m of \(coord):")
+                    for s in surveys {
+                        print("\(s.id!): \(s.title) (\(s.latitude), \(s.longitude))")
+                        fuckit += [AnnotationDetails(survey: s)]
+                    }
+                    DispatchQueue.main.async {
+                        self.updateSurveyPins(nowInRange: fuckit)
+                    }
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,61 +94,67 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
-        mapZoom(at: initialPin, radius: 5000)
+        mapZoom(at: initialPin, radius: regionRadius)
     }
     
-    func retrieveNearbyAndUpdate(){
-        self.lastUpdatedLocation = manager.location!
-        Survey.getAll(near: (lastUpdatedLocation)!, radiusInKm: regionRadius/1000, dbref: self.myRef) { surveys in
-            self.currentSurveys = surveys
-            var fuckit = [AnnotationDetails]()
-            let coord = self.lastUpdatedLocation!.coordinate
-            print("These are all within \(self.regionRadius/1000) km of \(coord):")
-            for s in surveys {
-                print("\(s.id!): \(s.title) (\(s.latitude), \(s.longitude))")
-                //print(currentSurveys)
-                fuckit += [AnnotationDetails(survey: s)]
-            }
-            
-            // update pins (only delete old pins out of range, and add new pins)
-            let oldPins = self.mapView.annotations
-            var toAdd = Set<AnnotationDetails>(fuckit)
-            let toDelete = oldPins.filter { old in
-                // only delete AnnotationDetails (i.e. not MKUserLocation)
-                if let oldAD = old as? AnnotationDetails {
-                    // only delete if it's not one of the new pins
-                    if toAdd.remove(oldAD) == nil { // returns nil if it's not one of the new pins
-                        return true
-                    }
+    // updates pins on the map
+    func updateSurveyPins(nowInRange: [AnnotationDetails]){
+        // start with all newly-in-range pins, only add pins not already in map
+        var toAdd = Set<AnnotationDetails>(nowInRange)
+        print("Found \(nowInRange.count) surveys in range.")
+        
+        // look through current pins, only collect pins that are no longer in range for deletion
+        let toDelete = self.mapView.annotations.filter { old in
+            // only delete AnnotationDetails (i.e. not MKUserLocation)
+            if let oldAD = old as? AnnotationDetails {
+                // only delete if it's not one of the pins that are now in range
+                if toAdd.remove(oldAD) == nil { // returns nil if it's not one of the new pins
+                    return true
                 }
-                return false
             }
-            // delete out-of-range pins, add new pins,
-            // don't touch the rest of the old pins (or user's current location)
-            self.mapView.removeAnnotations(toDelete)
-            self.mapView.addAnnotations([AnnotationDetails](toAdd))
-            self.mapZoom(at: self.manager.location?.coordinate ?? self.initialPin)
+            return false
         }
+        
+        print("Map already contains \(nowInRange.count - toAdd.count) of these surveys.")
+        print("Adding \(toAdd.count) new pins. Removing \(toDelete.count) old pins")
+        
+        // delete out-of-range pins, add new pins,
+        // don't touch the rest of the old pins (or user's current location)
+        self.mapView.removeAnnotations(toDelete)
+        self.mapView.addAnnotations([AnnotationDetails](toAdd))
     }
     
+    // centers the map on the current user location
     func mapZoom(){
         let UserCurrentLocation = (manager.location?.coordinate)!
-        let region = MKCoordinateRegionMakeWithDistance(UserCurrentLocation, 5000, 5000)
+        let region = MKCoordinateRegionMakeWithDistance(UserCurrentLocation, regionRadius, regionRadius)
         mapView.setRegion(region, animated: true)
     }
     
+    // centers the map on an arbitrary location
     func mapZoom(at: CLLocationCoordinate2D, radius: Double = 5000){
         let region = MKCoordinateRegionMakeWithDistance(at, radius, radius)
         mapView.setRegion(region, animated: true)
     }
     
+    /* location manager delegate code */
+    
+    // location manager delegate function, handles updates of user location
+    // only updates nearby surveys if user is far enough away from the last update location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.mapView.showsUserLocation = true
-        if lastUpdatedLocation == nil || lastUpdatedLocation!.distance(from: manager.location!) > 10 {
-            retrieveNearbyAndUpdate()
+        let lastUpdate = self.lastUpdatedLocation
+        let newUpdate = manager.location!
+        let shouldUpdate = (lastUpdate == nil || lastUpdate!.distance(from: newUpdate) > self.updateThreshold)
+        
+        if shouldUpdate {
+            print("setting new location to (\(newUpdate.coordinate))")
+            self.lastUpdatedLocation = newUpdate
+            self.mapZoom(at: newUpdate.coordinate)
         }
     }
     
+    // location manager delegate function, handles authorizing location checking
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.denied){
             showLocationIsAblePopUp()
@@ -136,6 +175,8 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         self.present(alertController, animated: true, completion: nil)
     }
     
+    /* map view delegate code */
+    
     //make changes ot the annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? AnnotationDetails{
@@ -153,15 +194,37 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         return nil
     }
     
+    // customizes the size of the annotation's callout detail, allows word wrap
+    func configureDetailView(annotation: AnnotationDetails) -> UIView {
+        // initialize label to be used as the callout detail
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 21))
+        //label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.text = annotation.subtitle
+        label.numberOfLines = 0     // allow word wrap
+        
+        // width constraint of detail, maxes out at 250
+        let width = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 250)
+        label.addConstraint(width)
+        
+        // height constraint of detail, maxes out at 120
+        let height = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 120)
+        label.addConstraint(height)
+        
+        return label
+    }
+    
+    // map view delegate function, handles tapping on a survey pin
     func mapView(_ mapView: MKMapView, didSelect: MKAnnotationView) {
-        //self.selectedAnnotation = view.annotation as? MKPointAnnotation
+        // when user taps a survey pin, map centers on the pin's location
         if let annoDetails = didSelect.annotation as? AnnotationDetails {
             self.mapZoom(at: annoDetails.coordinate)
         }
-
     }
     
+    // map view delegate function, handles tapping on a callout bubble
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // if the user tapped on the right part of the callout
         if control == view.rightCalloutAccessoryView {
             selectedAnnotation = view.annotation as? MKPointAnnotation
             performSegue(withIdentifier: "NextView", sender: self)
@@ -171,21 +234,6 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destination is TestViewController {
         }
-    }
-    
-    func configureDetailView(annotation: AnnotationDetails) -> UIView {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 21))
-        label.text = annotation.subtitle
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 12)
-        
-        let width = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 250)
-        label.addConstraint(width)
-        
-        let height = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 120)
-        label.addConstraint(height)
-        
-        return label
     }
     
     override func didReceiveMemoryWarning() {

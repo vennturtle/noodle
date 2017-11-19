@@ -218,7 +218,7 @@ class Survey: NSObject {
     // download all surveys near a specified location, then executes a callback on the retrieved data
     // this function passes in the downloaded Survey array to the included callback
     // (typically this callback is used to grab the data and update views with information)
-    static func getAll(near loc: CLLocation, radiusInKm: Double = 5.0, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void){
+    static func getAll(near loc: CLLocation, radiusInMeters: CLLocationDistance = 5000, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void){
         let ref = dbref.child("Surveys")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             var surveys = [Survey]()
@@ -226,15 +226,20 @@ class Survey: NSObject {
                 if let survey = Survey(snap as! FIRDataSnapshot) {
                     let sloc = CLLocation(latitude: survey.latitude, longitude: survey.longitude)
                     let dist = loc.distance(from:sloc)
-                    if dist <= radiusInKm * 1000 {
+                    if dist <= radiusInMeters {
                         surveys.append(survey)
                     }
                 }
             }
             let locStr = "(\(loc.coordinate.latitude), \(loc.coordinate.longitude))"
-            print("Retrieved \(surveys.count) survey(s) within \(radiusInKm) km of \(locStr). Executing callback...")
+            print("Retrieved \(surveys.count) survey(s) within \(radiusInMeters) m of \(locStr). Executing callback...")
             with(surveys)
         })
+    }
+    
+    // the above function but with search radius specified in kilometers
+    static func getAll(near loc: CLLocation, radiusInKm: CLLocationDistance = 5.0, dbref: FIRDatabaseReference, with: @escaping ([Survey]) -> Void){
+        getAll(near: loc, radiusInMeters: radiusInKm*1000, dbref: dbref, with: with)
     }
     
     // download all surveys by a specified user, then executes a callback on the retrieved data
