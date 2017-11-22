@@ -19,6 +19,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var selectBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
     @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var numResponsesLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var surveyTitleLabel: UILabel!
     @IBOutlet weak var questionPrompt: UILabel!
@@ -27,7 +28,13 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // var survey = Survey()
     var survey: Survey?
     var questions: [Question]?
-    var answers: [Answer]?
+    var answers: [Answer]? {
+        didSet {
+            if let ans = self.answers {
+                self.numResponsesLabel.text = "\(ans.count)"
+            }
+        }
+    }
     var statistics: [Int]?
     var currentIndex = -1 {
         didSet {
@@ -64,6 +71,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         surveyTitleLabel.text = survey?.title ?? "No Title"
         descriptionLabel.text = survey?.desc ?? "No Description"
         timeLeftLabel.text = survey?.timeRemainingString() ?? "None"
+        numResponsesLabel.text = "..."
         
         descriptionLabel.sizeToFit()
         descriptionLabel.numberOfLines = 0
