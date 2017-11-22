@@ -32,6 +32,10 @@ class SurveyAnnotation: NSObject, MKAnnotation {
         self.survey = survey
         super.init()
     }
+    
+    func getSurvey() -> Survey {
+        return self.survey
+    }
 }
 
 
@@ -45,6 +49,9 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     let updateThreshold: CLLocationDistance = 10 // in meters
     let manager = CLLocationManager()
     var selectedAnnotation: MKPointAnnotation!
+    var chosenAnnotation: SurveyAnnotation?
+    
+    @IBAction func unwindFromTakingSurvey(segue: UIStoryboardSegue){}
     
     // when a new location is assigned to this, the map updates automatically
     var lastUpdatedLocation: CLLocation? {
@@ -198,17 +205,29 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
         // if the user tapped on the right part of the callout
         if control == view.rightCalloutAccessoryView {
             selectedAnnotation = view.annotation as? MKPointAnnotation
+            chosenAnnotation = view.annotation as? SurveyAnnotation
+//            print(chosenAnnotation?.getSurvey().title)
             performSegue(withIdentifier: "NextView", sender: self)
         }
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.destination is TestViewController {
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("going here?")
+        if segue.identifier == "NextView" {
+            let navigationController = segue.destination as! UINavigationController
+            let takeSurveyViewController = navigationController.topViewController as! TakeSurveyViewController
+//            print("Chosen annotation: \(chosenAnnotation?.getSurvey().title)")
+            takeSurveyViewController.currentSurvey = chosenAnnotation?.getSurvey()
+    }
+    
+    
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
 }
 
