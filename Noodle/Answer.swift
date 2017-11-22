@@ -35,14 +35,16 @@ class Answer: NSObject {
         guard let sid = dict["sid"] as? String                      else { return nil }
         if debug { print("Retrieved uid (\(uid)) and sid (\(sid))") }
         
-        guard let choiceDicts = dict["choices"] as? [[Int:Bool]] else { return nil }
+        guard let choiceDicts = dict["choices"] as? [[String:Bool]] else { return nil }
         if debug { print("Retrieved choices as [[Int:Bool]]. Converting this dict to [Set<Int>]...") }
-        let choices = choiceDicts.map { return Set<Int>($0.keys) }
+        //let choices = choiceDicts.map { return Set<Int>($0.keys.map { Int($0) }) }
+        //let choices = choiceDicts.map { return Set<Int>($0.keys) }
         
         self.id = id
         self.uid = uid
         self.sid = sid
-        self.choices = choices
+        //self.choices = choices
+        self.choices = []
         if debug { print("Survey returned successfully.") }
     }
     
@@ -65,9 +67,9 @@ class Answer: NSObject {
         func submitAnswer(dbref: FIRDatabaseReference, userID: String, surveyID: String,withDebugMessages debug: Bool = false){
             
             // convert [Set<Int>] choices into [[Int:Bool]] format Firebase expects
-            let choiceDicts = self.choices.map { (set: Set<Int>) -> [Int:Bool] in
-                var dict = [Int:Bool]()
-                for el in set { dict[el] = true }
+            let choiceDicts = self.choices.map { (set: Set<Int>) -> [String:Bool] in
+                var dict = [String:Bool]()
+                for el in set { dict["\(el)"] = true }
                 return dict
             }
             
@@ -82,14 +84,14 @@ class Answer: NSObject {
         }
         
         // check if the user has already submitted an answer to this survey
-//        let ref = dbref.child("Surveys/\(surveyID)/answeredBy/\(userID)")
-//        ref.observeSingleEvent(of: .value, with: { snapshot in
-//            if snapshot.value != nil {
-//                print("Aborting answer submission: user already answered survey")
-//            } else {
-//                submitAnswer(dbref:dbref, userID:userID, surveyID:surveyID, withDebugMessages: debug)
-//            }
-//        })
+        let ref = dbref.child("Surveys/\(surveyID)/answeredBy/\(userID)")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                print("Aborting answer submission: user already answered survey")
+            } else {
+                submitAnswer(dbref:dbref, userID:userID, surveyID:surveyID, withDebugMessages: debug)
+            }
+        })
     }
     
     // given an array of answers and a question, finds how many times every possible choice was picked
