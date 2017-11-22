@@ -15,8 +15,75 @@ class TakeSurveyViewController: UIViewController {
     var questions = [Question]()
     var currentQuestion = Question()
     var currentOptions = [String]()
+    var surveyIndex = 0
+    var currentAnswers = Set<Int>()
+    var allAnswers = Answer()
+    
     
     @IBOutlet weak var tableViewOutlet: UITableView!
+    @IBOutlet weak var topLeftCornerButton: UIBarButtonItem!
+    @IBOutlet weak var topRightCornerButton: UIBarButtonItem!
+    
+    @IBAction func topLeftButtonPressed(_ sender: UIBarButtonItem) {
+
+        if topLeftCornerButton.title! == "Cancel" {
+            dismiss(animated: true, completion: nil)
+        } else {
+            surveyIndex -= 1
+            print("current question: \(surveyIndex)")
+            print("amount of questions: \((currentSurvey?.qids.count)!)")
+            //
+            allAnswers.choices.popLast()
+            
+            
+            //remove checkmarks
+            let cells = self.tableViewOutlet.visibleCells as! Array<UITableViewCell>
+            for cell in cells {
+                cell.accessoryType = .none
+            }
+            
+            //top LEFT corner button config
+            if surveyIndex == 0 {
+                topLeftCornerButton.title = "Cancel"
+            } else {
+                topLeftCornerButton.title = "Back"
+            }
+            
+            //top RIGHT corner button config
+            if surveyIndex == ((currentSurvey?.qids.count)! - 1) {
+                print("going here for last question")
+                topRightCornerButton.title = "Done"
+            } else {
+                topRightCornerButton.title = "Next"
+            }
+            
+            Question.get(byID: currentSurvey!.qids[surveyIndex], dbref:  myRef!){
+                question in
+                DispatchQueue.main.async {
+                    
+                    print("getting question")
+                    self.currentQuestion = question!
+                    if question!.type == .TrueOrFalse {
+                        self.currentOptions = ["True", "False"]
+                    } else {
+                        self.currentOptions = (question?.options)!
+                    }
+                    
+                    //gray out sections
+                    if question!.type == .MultipleSelection {
+                        self.tableViewOutlet.allowsMultipleSelection = true;
+                    } else {
+                        self.tableViewOutlet.allowsMultipleSelection = false;
+                    }
+                    
+                    print(question?.prompt ?? "question is not loaded")
+                    self.tableViewOutlet.reloadData()
+                }
+                
+            }
+        }
+        
+    }
     
     
     override func viewDidLoad() {
@@ -25,15 +92,25 @@ class TakeSurveyViewController: UIViewController {
         self.title = currentSurvey!.title
         
         
-        Question.get(byID: currentSurvey!.qids[0], dbref:  myRef!){
+        Question.get(byID: currentSurvey!.qids[surveyIndex], dbref:  myRef!){
             question in
             DispatchQueue.main.async {
                 print("getting question")
                 self.currentQuestion = question!
-                self.currentOptions = (question?.options)!
+                if question!.type == .TrueOrFalse {
+                    self.currentOptions = ["True", "False"]
+                } else {
+                    self.currentOptions = (question?.options)!
+                }
+                
+                //gray out sections
+                if question!.type == .MultipleSelection {
+                    self.tableViewOutlet.allowsMultipleSelection = true;
+                } else {
+                    self.tableViewOutlet.allowsMultipleSelection = false;
+                }
                 print(question?.prompt ?? "question is not loaded")
                 self.tableViewOutlet.reloadData()
-                
             }
             
         }
@@ -44,6 +121,74 @@ class TakeSurveyViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func nextButtonPressed(_ sender: UIBarButtonItem) {
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        if topRightCornerButton.title == "Done"{
+            allAnswers.submit(dbref: myRef!, userID: userID!, surveyID: currentSurvey!.id!)
+            print("submitting")
+            dismiss(animated: true, completion: nil)
+        } else {
+            surveyIndex += 1
+            print("current question: \(surveyIndex)")
+            print("amount of questions: \((currentSurvey?.qids.count)!)")
+            //added to choices of answers
+            allAnswers.choices.append(currentAnswers)
+            
+            //remove checkmarks
+            let cells = self.tableViewOutlet.visibleCells as! Array<UITableViewCell>
+            for cell in cells {
+                cell.accessoryType = .none
+            }
+            
+            //top LEFT corner button config
+            if surveyIndex == 0 {
+                topLeftCornerButton.title = "Cancel"
+            } else {
+                topLeftCornerButton.title = "Back"
+            }
+            
+            //top RIGHT corner button config
+            if surveyIndex == ((currentSurvey?.qids.count)! - 1) {
+                print("going here for last question")
+                topRightCornerButton.title = "Done"
+            }
+            
+            Question.get(byID: currentSurvey!.qids[surveyIndex], dbref:  myRef!){
+                question in
+                DispatchQueue.main.async {
+                    
+                    print("getting question")
+                    self.currentQuestion = question!
+                    if question!.type == .TrueOrFalse {
+                        self.currentOptions = ["True", "False"]
+                    } else {
+                        self.currentOptions = (question?.options)!
+                    }
+                    
+                    
+                    //gray out sections
+                    if question!.type == .MultipleSelection {
+                        self.tableViewOutlet.allowsMultipleSelection = true;
+                    } else {
+                        self.tableViewOutlet.allowsMultipleSelection = false;
+                    }
+                    
+                    //                if question!.type == .TrueOrFalse
+                    //                    || question!.type == .SingleSelection {
+                    //
+                    //                }
+                    
+                    print(question?.prompt ?? "question is not loaded")
+                    self.tableViewOutlet.reloadData()
+                }
+                
+            }
+        }
+        
+       
+    }
+    
     
 
     /*
@@ -74,11 +219,26 @@ extension TakeSurveyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let header = "Q1: \(currentQuestion.prompt)"
+        let header = "Q\(surveyIndex + 1): \(currentQuestion.prompt)"
         return header
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected")
+        
+        
+        if currentQuestion.type == .MultipleSelection {
+            currentAnswers.insert(indexPath.row)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        } else {
+            currentAnswers = Set<Int>([indexPath.row])
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if currentQuestion.type == .MultipleSelection {
+            currentAnswers.remove(indexPath.row)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
     }
 }

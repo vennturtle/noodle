@@ -51,7 +51,7 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
     var selectedAnnotation: MKPointAnnotation!
     var chosenAnnotation: SurveyAnnotation?
     
-    @IBAction func unwindFromTakingSurvey(segue: UIStoryboardSegue){}
+
     
     // when a new location is assigned to this, the map updates automatically
     var lastUpdatedLocation: CLLocation? {

@@ -82,14 +82,14 @@ class Answer: NSObject {
         }
         
         // check if the user has already submitted an answer to this survey
-        let ref = dbref.child("Surveys/\(surveyID)/answeredBy/\(userID)")
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            if snapshot.value != nil {
-                print("Aborting answer submission: user already answered survey")
-            } else {
-                submitAnswer(dbref:dbref, userID:userID, surveyID:surveyID, withDebugMessages: debug)
-            }
-        })
+//        let ref = dbref.child("Surveys/\(surveyID)/answeredBy/\(userID)")
+//        ref.observeSingleEvent(of: .value, with: { snapshot in
+//            if snapshot.value != nil {
+//                print("Aborting answer submission: user already answered survey")
+//            } else {
+//                submitAnswer(dbref:dbref, userID:userID, surveyID:surveyID, withDebugMessages: debug)
+//            }
+//        })
     }
     
     // given an array of answers and a question, finds how many times every possible choice was picked
