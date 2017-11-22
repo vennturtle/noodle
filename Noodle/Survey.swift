@@ -153,10 +153,11 @@ class Survey: NSObject {
         
         for (qid, q) in zip(self.qids, self.questions) {
             if debug { print("Submitting question... (key: \(qid))") }
-            guard let question = q.value else {
+            guard var question = q.value else {
                 print("Survey submission aborted: invalid question")
                 return nil
             }
+            question["sid"] = self.id!
             childUpdates["/Questions/\(qid)"] = question
             if debug { print("Question successfully submitted to database. (key: \(qid))") }
         }

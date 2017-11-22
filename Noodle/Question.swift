@@ -11,6 +11,7 @@ import Firebase
 
 class Question: NSObject {
     var id: String?
+    var sid: String?
     var prompt: String
     var type: QuestionType
     var options: [String]
@@ -63,12 +64,14 @@ class Question: NSObject {
         if debug { print("Retrieving question... (key: \(self.id!)") }
         
         guard let dict = snapshot.value as? [String:Any]    else { return nil }
+        guard let sid = dict["sid"] as? String              else { return nil }
         guard let prompt = dict["prompt"] as? String        else { return nil }
         guard let type = dict["type"] as? Int               else { return nil }
         guard let options = dict["options"] as? [String]    else { return nil }
         if debug { print("Question options returned successfully.") }
         
         self.id = id
+        self.sid = sid
         self.prompt = prompt
         self.type = Question.typeDict[type]!
         self.options = options
@@ -107,4 +110,23 @@ class Question: NSObject {
             with(question)
         })
     }
-}
+    
+    // download all surveys by a specified user, then executes a callback on the retrieved data
+    // this function passes in the downloaded Survey array to the included callback
+    // (typically this callback is used to grab the data and update views with information)
+    static func getAll(bySurveyID sid: String, dbref: FIRDatabaseReference, with: @escaping ([Question]) -> Void){
+        let ref = dbref.child("Questions").queryOrdered(byChild: "sid").queryEqual(toValue: sid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            var questions = [Question]()
+            for snap in snapshot.children {
+                if let question = Question(snap as! FIRDataSnapshot) {
+                    questions.append(question)
+                }
+                else {
+                    print("Could not retrieve survey (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
+                }
+            }
+            print("Retrieved \(questions.count) survey(s) associated with survey (key: \(sid)). Executing callback...")
+            with(questions)
+        })
+    }}
