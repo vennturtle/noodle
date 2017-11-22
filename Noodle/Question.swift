@@ -67,14 +67,14 @@ class Question: NSObject {
         guard let sid = dict["sid"] as? String              else { return nil }
         guard let prompt = dict["prompt"] as? String        else { return nil }
         guard let type = dict["type"] as? Int               else { return nil }
-        guard let options = dict["options"] as? [String]    else { return nil }
+        let options = dict["options"] as? [String]
         if debug { print("Question options returned successfully.") }
         
         self.id = id
         self.sid = sid
         self.prompt = prompt
         self.type = Question.typeDict[type]!
-        self.options = options
+        self.options = options ?? []
         if debug { print("Question returned successfully.") }
     }
     
