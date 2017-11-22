@@ -31,7 +31,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         cell.titleLabel.text = currentSurveys[indexPath.row].title
-        cell.timeLabel.text = String(currentSurveys[indexPath.row].daysAvailable)
+        cell.timeLabel.text = String(currentSurveys[indexPath.row].timeRemainingString()!)
         cell.descriptionLabel.text = currentSurveys[indexPath.row].desc
         return cell
     }
