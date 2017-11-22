@@ -53,6 +53,7 @@ class Survey: NSObject {
         if debug { print("Retrieving survey... (key: \(id))") }
         
         guard let dict = snapshot.value as? [String:Any]        else { return nil }
+        guard let uid = dict["uid"] as? String                  else { return nil }
         guard let title = dict["title"] as? String              else { return nil }
         guard let desc = dict["desc"] as? String                else { return nil }
         guard let startDateMillis = dict["startTime"] as? Int   else { return nil }
@@ -73,6 +74,7 @@ class Survey: NSObject {
         }
         
         self.id = id
+        self.uid = uid
         self.title = title
         self.desc = desc
         self.startDate = Date(timeIntervalSince1970: Double(startDateMillis)/1000.0)

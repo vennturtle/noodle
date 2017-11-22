@@ -33,11 +33,11 @@ class TakeSurveyViewController: UIViewController {
             print("current question: \(surveyIndex)")
             print("amount of questions: \((currentSurvey?.qids.count)!)")
             //
-            allAnswers.choices.popLast()
+            _ = allAnswers.choices.popLast()
             
             
             //remove checkmarks
-            let cells = self.tableViewOutlet.visibleCells as! Array<UITableViewCell>
+            let cells = self.tableViewOutlet.visibleCells
             for cell in cells {
                 cell.accessoryType = .none
             }
@@ -124,19 +124,20 @@ class TakeSurveyViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: UIBarButtonItem) {
         let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        surveyIndex += 1
+        print("current question: \(surveyIndex)")
+        print("amount of questions: \((currentSurvey?.qids.count)!)")
+        //added to choices of answers
+        allAnswers.choices.append(currentAnswers)
+
         if topRightCornerButton.title == "Done"{
             allAnswers.submit(dbref: myRef!, userID: userID!, surveyID: currentSurvey!.id!)
             print("submitting")
             dismiss(animated: true, completion: nil)
         } else {
-            surveyIndex += 1
-            print("current question: \(surveyIndex)")
-            print("amount of questions: \((currentSurvey?.qids.count)!)")
-            //added to choices of answers
-            allAnswers.choices.append(currentAnswers)
-            
             //remove checkmarks
-            let cells = self.tableViewOutlet.visibleCells as! Array<UITableViewCell>
+            let cells = self.tableViewOutlet.visibleCells
             for cell in cells {
                 cell.accessoryType = .none
             }
