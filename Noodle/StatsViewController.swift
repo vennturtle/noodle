@@ -27,6 +27,7 @@ import UIKit
 
 import Foundation
 import UIKit
+import Firebase
 
 
 
@@ -35,10 +36,19 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     //outlets for selectbox and dropdown
     
     @IBOutlet weak var selectBox: UITextField!
-    
     @IBOutlet weak var dropDown: UIPickerView!
     
-    var survey = Survey()
+    @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var surveyTitleLabel: UILabel!
+    
+    // var survey = Survey()
+    var survey: Survey?
+    var answers: [Answer]?
+    var statitics: [Int]?
+    var timeleft: Int = 0
+    
+    
     //creating the surveys list
     
     var surveys = ["Survey 1", "Survey 2",  "Survey 3"]
@@ -52,6 +62,45 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         selectBox.text = "Select a question"
         
         self.hideKeyboardWhenTappedAround()
+        timeleft = (survey?.daysAvailable)!
+        
+        
+        print("printing the label")
+        print(survey?.title)
+        print("\n\n\n\n")
+        
+        
+        surveyTitleLabel.text = (survey!.title)
+        descriptionLabel.text = survey?.desc
+        timeLeftLabel.text = String(timeleft)
+        
+        // tells how many questions
+        // will be used to the set the bottom of the bar chart
+        
+        survey?.questions.count
+        
+        //returns a reference to the database
+        let myRef =  FIRDatabase.database().reference()
+        
+        
+        //gets all the answers for the current survey
+        Answer.getAll(bySurveyID: (survey?.id!)!, dbref: myRef ){ (SHITSANDGIGGLES ) in
+            
+            self.answers = SHITSANDGIGGLES
+        }
+        
+        //returns integer array
+        //takes in the question number from the drop down and converts it into an array of ints
+        // corresponds to the choice number
+        //statitics = Answer.getFrequency(ofQuestion: 1, from: self.answers!)
+        
+        
+        //gets the statitics of choice one from the choosen question
+        //  statitics?[0]
+        
+        
+        
+        
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -83,8 +132,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         
         
-        return surveys.count
-        
+        return survey?.qids.count ?? 0
         
         
     }
@@ -93,8 +141,11 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         
         
-        let title = surveys[row]
-        return title
+        //        let title = surveys[row]
+        //        return title
+        
+        return "Question \(row + 1)"
+        
         
     }
     
@@ -103,10 +154,13 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         
-        
-        self.selectBox.text = self.surveys[row]
+        self.selectBox.text = "Question \(row + 1)"
         
         self.dropDown.isHidden = true
+        
+        //        self.selectBox.text = self.surveys[row]
+        //
+        //        self.dropDown.isHidden = true
         
         
         
@@ -123,7 +177,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             
             self.dropDown.isHidden = false
-
+            
             textField.endEditing(true)
             
         }
@@ -133,6 +187,11 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
 }
 
+
+
+// drop down menu selects question and graph will display on the left the number of responses for each question and the bottom will display the answers which will be shown as a bar chart.
+//call survey methods to populate the title, description and time left
+// using the survey that was passed into this class.
 
 
 
