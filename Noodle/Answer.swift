@@ -28,23 +28,23 @@ class Answer: NSObject {
     // initialization from server snapshot
     init?(_ snapshot: FIRDataSnapshot, withDebugMessages debug: Bool = false){
         let id = snapshot.key
-        if debug { print("Retrieving answer... (key: \(self.id!)") }
+        if debug { print("Retrieving answer... (key: \(id)") }
         
         guard let dict = snapshot.value as? [String:Any]            else { return nil }
         guard let uid = dict["uid"] as? String                      else { return nil }
         guard let sid = dict["sid"] as? String                      else { return nil }
         if debug { print("Retrieved uid (\(uid)) and sid (\(sid))") }
-        
         guard let choiceDicts = dict["choices"] as? [[String:Bool]] else { return nil }
         var choices = [Set<Int>]()
         for dict in choiceDicts {
             var currentSet = Set<Int>()
             for key in dict.keys {
-                currentSet.insert(Int(key)!)
+                currentSet.insert(Int(key.substring(from:key.index(key.startIndex, offsetBy: 1)))!)
             }
             choices.append(currentSet)
         }
         if debug { print("Retrieved choices as [[Int:Bool]]. Converting this dict to [Set<Int>]...") }
+        if debug { print("\(choices)") }
         
         self.id = id
         self.uid = uid
@@ -74,9 +74,10 @@ class Answer: NSObject {
             // convert [Set<Int>] choices into [[Int:Bool]] format Firebase expects
             let choiceDicts = self.choices.map { (set: Set<Int>) -> [String:Bool] in
                 var dict = [String:Bool]()
-                for el in set { dict["\(el)"] = true }
+                for el in set { dict["~\(el)"] = true }
                 return dict
             }
+            print("Creating answer with choice dict:\n\n\(choiceDicts)")
             
             self.id = dbref.child("Answers").childByAutoId().key
             let answer = ["uid": userID,
@@ -102,11 +103,12 @@ class Answer: NSObject {
     // given an array of answers and a question, finds how many times every possible choice was picked
     // (e.g. for a T/F question with 18 answers, this might return [7, 11] where choice 0 means true)
     // if you're analyzing question one, ofQuestion = 1
-    static func getFrequency(ofQuestion indexPlusOne:Int, from answers: [Answer]) -> [Int]? {
+    static func getFrequency(ofQuestion indexPlusOne:Int, options:Int, from answers: [Answer]) -> [Int]? {
         let question = indexPlusOne - 1
         guard answers.count > 0 else        { return nil }
         
-        let numChoices = answers[0].choices.count
+        let numChoices = options
+        print("This question has \(numChoices) choices.")
         guard question < numChoices else    { return nil }
         
         // will store choice frequencies, initialize each to 0
@@ -135,6 +137,7 @@ class Answer: NSObject {
                     answers.append(ans)
                 }
                 else {
+                    
                     print("Could not retrieve answer (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
                 }
             }
