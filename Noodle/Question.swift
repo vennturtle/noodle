@@ -123,10 +123,11 @@ class Question: NSObject {
                     questions.append(question)
                 }
                 else {
-                    print("Could not retrieve survey (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
+                    print("Could not retrieve question (key: \((snap as? FIRDataSnapshot)?.key ?? "None"))")
                 }
             }
-            print("Retrieved \(questions.count) survey(s) associated with survey (key: \(sid)). Executing callback...")
+            print("Retrieved \(questions.count) question(s) associated with survey (key: \(sid)). Executing callback...")
             with(questions)
         })
-    }}
+    }
+}

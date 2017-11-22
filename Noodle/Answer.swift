@@ -103,12 +103,13 @@ class Answer: NSObject {
     // given an array of answers and a question, finds how many times every possible choice was picked
     // (e.g. for a T/F question with 18 answers, this might return [7, 11] where choice 0 means true)
     // if you're analyzing question one, ofQuestion = 1
-    static func getFrequency(ofQuestion indexPlusOne:Int, options:Int, from answers: [Answer]) -> [Int]? {
-        let question = indexPlusOne - 1
+    static func getFrequency(ofQuestion question:Int, options:Int, from answers: [Answer]) -> [Int]? {
         guard answers.count > 0 else        { return nil }
-        
-        let numChoices = options
-        print("This question has \(numChoices) choices.")
+        var numChoices = 2
+        if options > 0 {
+            numChoices = options
+        }
+        //print("This question has \(numChoices) choices.")
         guard question < numChoices else    { return nil }
         
         // will store choice frequencies, initialize each to 0
