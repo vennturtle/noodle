@@ -36,15 +36,20 @@ class Answer: NSObject {
         if debug { print("Retrieved uid (\(uid)) and sid (\(sid))") }
         
         guard let choiceDicts = dict["choices"] as? [[String:Bool]] else { return nil }
+        var choices = [Set<Int>]()
+        for dict in choiceDicts {
+            var currentSet = Set<Int>()
+            for key in dict.keys {
+                currentSet.insert(Int(key)!)
+            }
+            choices.append(currentSet)
+        }
         if debug { print("Retrieved choices as [[Int:Bool]]. Converting this dict to [Set<Int>]...") }
-        //let choices = choiceDicts.map { return Set<Int>($0.keys.map { Int($0) }) }
-        //let choices = choiceDicts.map { return Set<Int>($0.keys) }
         
         self.id = id
         self.uid = uid
         self.sid = sid
-        //self.choices = choices
-        self.choices = []
+        self.choices = choices
         if debug { print("Survey returned successfully.") }
     }
     
