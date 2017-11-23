@@ -1,6 +1,6 @@
 # Noodle - A survey app for casual curiosity
 
-Ever wanted to know what the dude walking past you on the street thought about the new lackluster superhero movie that came out last weekend? Have you ever wanted to know how people felt about your club's recent bake sale, and if they really liked the muffins you baked all last night?
+Ever wanted to know what the dude walking past you on the street thought about the new lackluster superhero movie that came out last weekend? Have you ever wanted to know how people felt about your club's recent bake sale, and if they really liked the special brownies you baked all last night?
 
 Noodle is the iOS app for the layman's curiosities, that makes creating and taking surveys so easy you don't even have to think about it.
 
