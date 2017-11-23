@@ -37,7 +37,7 @@ Then open the Xcode workspace file to start working on the application.
 * Luis Arevalo - *Project Coordination & UI Design* - [luisarevalo21](https://github.com/luisarevalo21)
 * Brandon Cecilio - *Project Management & Back-end Dev* - [vennturtle](https://github.com/vennturtle)
 * Marcus Norona - *Lead Front-end Dev & Design Consultant* - [mjnorona](https://github.com/mjnorona)
-* Salvador Jr. Rodriguez - *UI Design & UX Testing* - [Salvador-Jr](https://github.com/Salvador-Jr)
+* Salvador Jr. Rodriguez - *Documentation & UI Design* - [Salvador-Jr](https://github.com/Salvador-Jr)
 
 See also the list of [contributors](https://github.com/vennturtle/noodle/graphs/contributors) who participated in this project.
 
