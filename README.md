@@ -4,6 +4,15 @@ Ever wanted to know what the dude walking past you on the street thought about t
 
 Noodle is the iOS app for the layman's curiosities, that makes creating and taking surveys so easy you don't even have to think about it.
 
+## Features
+
+* *Create an account* - Sign up and sign in with no hassle! Passwords are securely encrypted by Firebase.
+* *Create a survey* - Creating a survey in Noodle is easy and intuitive. You can set true-or-false, multiple-choice, and multiple-answer questions in seconds.
+* *Narrow your survey* - You can set how long your survey will be up, and what area you'd like to poll from.
+* *Take a survey* - Noodle shows you a map with all the surveys in your area. Answering them is just a tap away!
+* *View your results* - You can view statistics for each question and find out which choices were the most popular.
+* *Simple to use* - Noodle is dead-simple! Waste less time fussing over survey logistics, and spend more time on getting the answers that matter.
+
 ## Getting Started
 
 ### Prerequisites
