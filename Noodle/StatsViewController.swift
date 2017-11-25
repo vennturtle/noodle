@@ -24,6 +24,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var surveyTitleLabel: UILabel!
     @IBOutlet weak var questionPrompt: UILabel!
     @IBOutlet weak var statsTableView: UITableView!
+    @IBOutlet weak var questionType: UILabel!
     
     // var survey = Survey()
     var survey: Survey?
@@ -38,10 +39,20 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var statistics: [Int]?
     var currentIndex = -1 {
         didSet {
-            self.updateStatistics(questionIndex: currentIndex)
-            self.questionPrompt.isHidden = false
-            self.questionPrompt.text = questions?[currentIndex].prompt ?? "downloading questions..."
-            self.statsTableView.reloadData()
+            if (answers == nil){
+                print("Answers are still downloading...")
+            }
+            else if (answers!.count < 2){
+                print("Survey must have at least 2 responses to view statistics.")
+                self.selectBox.isEnabled = false
+                self.questionPrompt.isHidden = false
+                self.questionPrompt.text = "Not enough people have answered yet."
+                self.questionType.isHidden = false
+                self.questionType.text = "You need at least two. Try again later..."
+            }
+            else {
+                self.show(question: currentIndex)
+            }
         }
     }
     
@@ -94,6 +105,27 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if let stats = Answer.getFrequency(ofQuestion: qindex, options: numOps, from: ans) {
             self.statistics = stats
         } else { print("Error found when updating statistics") }
+    }
+    
+    func show(question qindex: Int){
+        self.updateStatistics(questionIndex: qindex)
+        
+        // placeholder for if questions are still loading
+        self.questionPrompt.text = "downloading questions..."
+        self.questionPrompt.isHidden = false
+        
+        if let question = questions?[qindex] {
+            self.questionPrompt.text = question.prompt
+            
+            self.questionType.isHidden = false
+            switch(question.type){
+            case .TrueOrFalse:          self.questionType.text = "true-or-false"
+            case .SingleSelection:      self.questionType.text = "multiple-choice"
+            case .MultipleSelection:    self.questionType.text = "checkbox"
+            }
+        }
+        
+        self.statsTableView.reloadData()
     }
     
     /* table view delegate functions */
