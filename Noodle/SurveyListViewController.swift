@@ -72,7 +72,9 @@ class SurveyListViewController: UIViewController, MKMapViewDelegate,CLLocationMa
                 // asynchronously retrieves nearby surveys, updates the map once it's done
                 Survey.getAll(near: newLocation, radiusInMeters: self.regionRadius, dbref: self.myRef) { surveys in
                     if let userID = FIRAuth.auth()?.currentUser?.uid {
-                        self.currentSurveys = surveys.filter { $0.uid! != userID }
+                        let stillOpen = surveys.filter { $0.isOpen }
+                        let notByUser = stillOpen.filter { $0.uid! != userID }
+                        self.currentSurveys = notByUser
                     }
                     var fuckit = [SurveyAnnotation]()
                     let coord = newLocation.coordinate

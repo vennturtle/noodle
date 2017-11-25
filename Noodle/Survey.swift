@@ -33,7 +33,7 @@ class Survey: NSObject {
     
     var isOpen: Bool {
         guard let remaining = timeRemaining() else { return false }
-        return remaining <= 0.0
+        return remaining > 0.0
     }
     
     // client-side creation (you can omit questions and qids)
