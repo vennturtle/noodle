@@ -152,6 +152,12 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StatsTableViewCell", for: indexPath) as? StatsTableViewCell  else {
             fatalError("The dequeued cell is not an instance of StatsTableViewCell.")
         }
+        cell.selectionStyle = .none
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor(red: 98/255.0, green: 183/255.0, blue: 98/255.0, alpha: 1.0)
+        } else {
+            cell.backgroundColor = UIColor(red: 133/255.0, green: 199/255.0, blue: 133/255.0, alpha: 1.0)
+        }
         
         // special labels if the question type is true or false
         let row = indexPath.row
