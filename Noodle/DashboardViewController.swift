@@ -30,11 +30,11 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "home", for: indexPath) as! HomeTableViewCell
         
         cell.selectionStyle = .none
-        if indexPath.row % 2 == 0 { // 189, 231, 126
-            cell.backgroundColor = UIColor(red: 80/255.0, green: 206/255.0, blue: 80/255.0, alpha: 1.0)
-        } else {
-            cell.backgroundColor = UIColor(red: 111/255.0, green: 214/255.0, blue: 111/255.0, alpha: 1.0)
-        }
+//        if indexPath.row % 2 == 0 { // 189, 231, 126
+//            cell.backgroundColor = UIColor(red: 80/255.0, green: 206/255.0, blue: 80/255.0, alpha: 1.0)
+//        } else {
+//            cell.backgroundColor = UIColor(red: 111/255.0, green: 214/255.0, blue: 111/255.0, alpha: 1.0)
+//        }
         cell.titleLabel.text = currentSurveys[indexPath.row].title
         cell.timeLabel.text = String(currentSurveys[indexPath.row].timeRemainingString()!)
         cell.descriptionLabel.text = currentSurveys[indexPath.row].desc

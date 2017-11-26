@@ -229,6 +229,7 @@ extension TakeSurveyViewController: UITableViewDataSource, UITableViewDelegate {
         
         if currentQuestion.type == .MultipleSelection {
             currentAnswers.insert(indexPath.row)
+            
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         } else {
             currentAnswers = Set<Int>([indexPath.row])
